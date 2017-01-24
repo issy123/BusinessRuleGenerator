@@ -1,6 +1,6 @@
 package Controller;
 
-import model.TargetConnection;
+import com.mscharhag.sparkdemo.TargetConnection;
 import spark.Request;
 import spark.Response;
 
@@ -12,15 +12,14 @@ import java.util.*;
  */
 public class Controller {
 
-    public static Map haaltabellenop(Request req, Response res) {
+    public static Map GetTables(Request req, Response res) {
         String Type = "";
 
         List<Map> list = new ArrayList<Map>();
         Map<String, List<Map>> test = new HashMap<String, List<Map> >();
 
         try {
-            TargetConnection targetConnection = TargetConnection.getInstance();
-            Connection connection = targetConnection.getConnection();
+            Connection connection = TargetConnection.getInstance().getConnection();
             Statement stmt = null;
             String query = "SELECT table_name FROM user_tables";
             try {
@@ -29,8 +28,8 @@ public class Controller {
                 while (rs.next()) {
                     Type = rs.getString("table_name");
                     Map<String, String> tables = new HashMap<String, String>();
-                    tables.put("TABLENAME", Type);
-                    tables.put("KOLOMMEN", Type);
+                    tables.put("key", Type);
+                    tables.put("tablevalue", Type);
                     list.add(tables);
                 }
             } catch (SQLException e ) {
@@ -48,8 +47,8 @@ public class Controller {
         return test;
     }
 
-    public static Map haalkolommenvantabel(Request req, Response res) {
-        String tabelnaam = req.params(":tabelnaam");
+    public static Map getColumnsFromTable(Request req, Response res) {
+        String tabelnaam = req.params(":tablename");
         String Type = "";
 
         List<Map> list = new ArrayList<Map>();
@@ -57,23 +56,22 @@ public class Controller {
 
         try {
 
-
-            TargetConnection targetConnection = TargetConnection.getInstance();
-            Connection connection = targetConnection.getConnection();
+            Connection connection = TargetConnection.getInstance().getConnection();
             Statement stmt = null;
-            String query = "DESCRIBE " + tabelnaam;
+            String query = "select * from " + tabelnaam + " WHERE ROWNUM = 1";
             try {
                 stmt = connection.createStatement();
                 ResultSet rs = stmt.executeQuery(query);
-                while (rs.next()) {
-                    Type = rs.getString("table_name");
+                ResultSetMetaData rsmd = rs.getMetaData();
+                for(int i = 1; i <= rsmd.getColumnCount();i++){
                     Map<String, String> tables = new HashMap<String, String>();
-                    tables.put("KOLOMNAAMWAARDE", Type);
-                    tables.put("KOLOMNAAM", Type);
+                    tables.put("KOLOMNAAM", rsmd.getColumnName(i));
+                    tables.put("KOLOMTYPE", rsmd.getColumnTypeName(i));
+                    tables.put("nullable", Integer.toString(rsmd.isNullable(i)));
                     list.add(tables);
                 }
             } catch (SQLException e ) {
-                e.getErrorCode();
+                System.out.println(e.getMessage());
             } finally {
                 if (stmt != null) { stmt.close(); }
             }
@@ -85,6 +83,9 @@ public class Controller {
 
         test.put("kolommen", list);
         return test;
+    }
+    public static Map generateBusinessRule(Request req, Response res) {
+        return new HashMap();
     }
 
 }

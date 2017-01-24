@@ -1,4 +1,4 @@
-package model;
+package com.mscharhag.sparkdemo;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;

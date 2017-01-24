@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Jan 24, 2017 3:08:18 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="model.Project" table="PROJECT" schema="TOSAD_2016_2B_TEAM3" optimistic-lock="version">
+        <id name="id" type="long">
+            <column name="ID" precision="10" scale="0" />
+            <generator class="assigned" />
+        </id>
+        <property name="databaseUrl" type="string">
+            <column name="DATABASE_URL" length="50" not-null="true" />
+        </property>
+        <property name="databaseUsername" type="string">
+            <column name="DATABASE_USERNAME" length="50" not-null="true" />
+        </property>
+        <property name="databasePassword" type="string">
+            <column name="DATABASE_PASSWORD" length="50" not-null="true" />
+        </property>
+        <property name="databaseName" type="string">
+            <column name="DATABASE_NAME" length="50" not-null="true" />
+        </property>
+        <set name="users" table="USER_HAS_PROJECT" inverse="false" lazy="true" fetch="select">
+            <key>
+                <column name="PROJECT_ID" precision="10" scale="0" not-null="true" />
+            </key>
+            <many-to-many entity-name="model.User">
+                <column name="USER_ID" precision="10" scale="0" not-null="true" />
+            </many-to-many>
+        </set>
+        <set name="businessRules" table="BUSINESS_RULE" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="PROJECT_ID" precision="10" scale="0" not-null="true" />
+            </key>
+            <one-to-many class="model.BusinessRule" />
+        </set>
+    </class>
+</hibernate-mapping>
