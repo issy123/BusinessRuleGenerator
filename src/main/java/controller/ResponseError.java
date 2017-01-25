@@ -1,4 +1,4 @@
-package com.mscharhag.sparkdemo;
+package controller;
 
 public class ResponseError {
 

@@ -1,22 +1,34 @@
-package Controller;
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package controller;
 
-import com.mscharhag.sparkdemo.TargetConnection;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import service.connection.TargetConnection;
 import spark.Request;
 import spark.Response;
 
-import java.sql.*;
-import java.util.*;
-
 /**
- * Created by Administrator on 1/25/2017.
+ *
+ * @author ismail
  */
-public class Controller {
+public class TableController {
 
     public static Map GetTables(Request req, Response res) {
         String Type = "";
 
         List<Map> list = new ArrayList<Map>();
-        Map<String, List<Map>> test = new HashMap<String, List<Map> >();
+        Map<String, List<Map>> test = new HashMap<String, List<Map>>();
 
         try {
             Connection connection = TargetConnection.getInstance().getConnection();
@@ -32,14 +44,14 @@ public class Controller {
                     tables.put("tablevalue", Type);
                     list.add(tables);
                 }
-            } catch (SQLException e ) {
-                e.getErrorCode();
+            } catch (SQLException e) {
+                System.out.println(e.getErrorCode());
             } finally {
-                if (stmt != null) { stmt.close(); }
+                if (stmt != null) {
+                    stmt.close();
+                }
             }
-        }
-        catch (Exception ex)
-        {
+        } catch (SQLException ex) {
             ex.getMessage();
         }
 
@@ -52,7 +64,7 @@ public class Controller {
         String Type = "";
 
         List<Map> list = new ArrayList<Map>();
-        Map<String, List<Map>> test = new HashMap<String, List<Map> >();
+        Map<String, List<Map>> test = new HashMap<String, List<Map>>();
 
         try {
 
@@ -63,30 +75,25 @@ public class Controller {
                 stmt = connection.createStatement();
                 ResultSet rs = stmt.executeQuery(query);
                 ResultSetMetaData rsmd = rs.getMetaData();
-                for(int i = 1; i <= rsmd.getColumnCount();i++){
+                for (int i = 1; i <= rsmd.getColumnCount(); i++) {
                     Map<String, String> tables = new HashMap<String, String>();
                     tables.put("KOLOMNAAM", rsmd.getColumnName(i));
                     tables.put("KOLOMTYPE", rsmd.getColumnTypeName(i));
                     tables.put("nullable", Integer.toString(rsmd.isNullable(i)));
                     list.add(tables);
                 }
-            } catch (SQLException e ) {
+            } catch (SQLException e) {
                 System.out.println(e.getMessage());
             } finally {
-                if (stmt != null) { stmt.close(); }
+                if (stmt != null) {
+                    stmt.close();
+                }
             }
-        }
-        catch (Exception ex)
-        {
+        } catch (SQLException ex) {
             ex.getMessage();
         }
 
         test.put("kolommen", list);
         return test;
     }
-    public static Map generateBusinessRule(Request req, Response res) {
-        return new HashMap();
-    }
-
 }
-

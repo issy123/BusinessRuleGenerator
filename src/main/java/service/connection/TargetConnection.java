@@ -1,4 +1,4 @@
-package com.mscharhag.sparkdemo;
+package service.connection;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -38,7 +38,7 @@ public class TargetConnection {
                 this.connection = DriverManager.getConnection(this.dbUrl, this.dbUsername, this.dbPassword);
                 return this.connection;
             }
-            catch (InstantiationException | IllegalAccessException | ClassNotFoundException | SQLException e1) {
+            catch (ClassNotFoundException | IllegalAccessException | InstantiationException | SQLException | NullPointerException e1) {
                 e1.printStackTrace();
             }
             return null;
