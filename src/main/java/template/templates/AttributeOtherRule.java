@@ -5,12 +5,16 @@
  */
 package template.templates;
 
+import model.BusinessRuleModel;
+import org.hibernate.Session;
+import template.Template;
+
 /**
  *
  * @author ismail
  */
-public class AttributeOtherRule {
-    public boolean parse(){
+public class AttributeOtherRule  implements Template{
+    public boolean parse(BusinessRuleModel rule, Session session){
         return true;
     }
     public String code(){

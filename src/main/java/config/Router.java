@@ -7,6 +7,8 @@ package config;
 
 import controller.BusinessRuleController;
 import controller.TableController;
+import spark.Request;
+import spark.Response;
 import static spark.Spark.before;
 import static spark.Spark.get;
 import static spark.Spark.post;
@@ -30,8 +32,8 @@ public class Router {
     public void listen() {
         
         before((request, response) -> response.type("application/json"));
-        get("/tables", TableController::GetTables, json());
-        get("/table/:tablename/columns", TableController::getColumnsFromTable, json());
-        post("/generate/:business_rule_id", BusinessRuleController::generateBusinessRule, json());
+        get("/:project_id/tables", TableController::getTables, json());
+        get("/:project_id/table/:tablename/columns", TableController::getColumnsFromTable, json());
+        post("/:project_id/generate/:business_rule_id", BusinessRuleController::generateBusinessRule, json());
     }
 }

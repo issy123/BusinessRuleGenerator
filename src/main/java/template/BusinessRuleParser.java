@@ -44,6 +44,7 @@ public class BusinessRuleParser {
                 return template.parse(rule, openSession);
             }
         }
-        return true;
+        System.out.println("Unsupported business rule type: " + code);
+        return false;
     }
 }

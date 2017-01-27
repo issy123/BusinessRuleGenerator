@@ -16,9 +16,10 @@ import util.HibernateUtil;
 /**
  * Created by ismail on 1/25/2017.
  */
-public class BusinessRuleController {
+public class BusinessRuleController extends Controller{
 
     public static Map generateBusinessRule(Request req, Response res) {
+        System.out.println("gottim");
         Long businessRuleId = Long.parseLong(req.params(":business_rule_id"));
         
         System.out.println(req.body());
@@ -28,9 +29,10 @@ public class BusinessRuleController {
         JsonArray rules = jobject.getAsJsonArray("rules");
         
         BusinessRuleParser parser = BusinessRuleParser.getInstance();
-        
+        System.out.println("parsing bro");
         ArrayList<Boolean> results = new ArrayList();
         for(int i = 0; i < rules.size();i++){
+            System.out.println("sure");
             results.add(parser.parse(rules.get(i).getAsLong()));
         }
         return new HashMap();

@@ -15,16 +15,22 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import model.BusinessRuleModel;
+import org.hibernate.Session;
+import template.Template;
 
 /**
  *
  * @author ismail
  */
-public class AttributeListRule {
-    public boolean parse(){
-        return true;
+public class AttributeListRule  implements Template{
+    @Override
+    public boolean parse(BusinessRuleModel rule, Session session) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+    
     public String code(){
         return "ALIS";
     }
+
 }

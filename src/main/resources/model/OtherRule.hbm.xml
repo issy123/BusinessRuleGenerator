@@ -3,7 +3,7 @@
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <!-- Generated Jan 24, 2017 3:08:18 PM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
-    <class name="model.OtherRule" table="OTHER_RULE" schema="TOSAD_2016_2B_TEAM3" optimistic-lock="version">
+    <class name="model.OtherRuleModel" table="OTHER_RULE" schema="TOSAD_2016_2B_TEAM3" optimistic-lock="version">
         <id name="id" type="long">
             <column name="ID" precision="10" scale="0" />
             <generator class="assigned" />

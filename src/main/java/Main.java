@@ -7,7 +7,7 @@ public class Main {
 
     public static void main(String[] args) {
         Router.getInstance().listen();
-        Config.bla();
+        Config.start();
 
     }
 

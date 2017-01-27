@@ -13,7 +13,7 @@ BEGIN
         END IF;
 
         IF NOT l_passed THEN
-            raise_application_error(-20000, {error_message});
+            raise_application_error(-20000, '{error_message}');
         END IF;
     END;
 END;

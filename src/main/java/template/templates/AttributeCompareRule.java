@@ -7,7 +7,7 @@ package template.templates;
 
 import model.BusinessRuleModel;
 import org.hibernate.Session;
-import service.TemplateReader;
+import template.TemplateReader;
 import template.Template;
 
 /**

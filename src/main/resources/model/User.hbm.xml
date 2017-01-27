@@ -3,12 +3,12 @@
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <!-- Generated Jan 24, 2017 3:08:18 PM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
-    <class name="model.User" table="user" schema="TOSAD_2016_2B_TEAM3" optimistic-lock="version">
+    <class name="model.UserModel" table="user" schema="TOSAD_2016_2B_TEAM3" optimistic-lock="version">
         <id name="id" type="long">
             <column name="ID" precision="10" scale="0" />
             <generator class="assigned" />
         </id>
-        <many-to-one name="role" class="model.Role" fetch="select">
+        <many-to-one name="role" class="model.RoleModel" fetch="select">
             <column name="ROLE_ID" precision="10" scale="0" not-null="true" />
         </many-to-one>
         <property name="username" type="string">
@@ -21,7 +21,7 @@
             <key>
                 <column name="USER_ID" precision="10" scale="0" not-null="true" />
             </key>
-            <many-to-many entity-name="model.Project">
+            <many-to-many entity-name="model.ProjectModel">
                 <column name="PROJECT_ID" precision="10" scale="0" not-null="true" />
             </many-to-many>
         </set>

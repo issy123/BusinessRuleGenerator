@@ -3,7 +3,7 @@
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <!-- Generated Jan 24, 2017 3:08:18 PM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
-    <class name="model.Project" table="PROJECT" schema="TOSAD_2016_2B_TEAM3" optimistic-lock="version">
+    <class name="model.ProjectModel" table="PROJECT" schema="TOSAD_2016_2B_TEAM3" optimistic-lock="version">
         <id name="id" type="long">
             <column name="ID" precision="10" scale="0" />
             <generator class="assigned" />
@@ -20,11 +20,14 @@
         <property name="databaseName" type="string">
             <column name="DATABASE_NAME" length="50" not-null="true" />
         </property>
+        <property name="databaseType" type="string">
+            <column name="DATABASE_TYPE" length="20" not-null="true" />
+        </property>
         <set name="users" table="USER_HAS_PROJECT" inverse="false" lazy="true" fetch="select">
             <key>
                 <column name="PROJECT_ID" precision="10" scale="0" not-null="true" />
             </key>
-            <many-to-many entity-name="model.User">
+            <many-to-many entity-name="model.UserModel">
                 <column name="USER_ID" precision="10" scale="0" not-null="true" />
             </many-to-many>
         </set>
@@ -32,7 +35,7 @@
             <key>
                 <column name="PROJECT_ID" precision="10" scale="0" not-null="true" />
             </key>
-            <one-to-many class="model.BusinessRule" />
+            <one-to-many class="model.BusinessRuleModel" />
         </set>
     </class>
 </hibernate-mapping>

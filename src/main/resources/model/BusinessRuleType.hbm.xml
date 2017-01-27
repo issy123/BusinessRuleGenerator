@@ -3,12 +3,12 @@
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <!-- Generated Jan 24, 2017 3:08:18 PM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
-    <class name="model.BusinessRuleType" table="BUSINESS_RULE_TYPE" schema="TOSAD_2016_2B_TEAM3" optimistic-lock="version">
+    <class name="model.BusinessRuleTypeModel" table="BUSINESS_RULE_TYPE" schema="TOSAD_2016_2B_TEAM3" optimistic-lock="version">
         <id name="id" type="long">
             <column name="ID" precision="10" scale="0" />
             <generator class="assigned" />
         </id>
-        <many-to-one name="category" class="model.Category" fetch="select">
+        <many-to-one name="category" class="model.CategoryModel" fetch="select">
             <column name="CATEGORY_ID" precision="10" scale="0" not-null="true" />
         </many-to-one>
         <property name="code" type="string">
@@ -24,7 +24,7 @@
             <key>
                 <column name="BUSINESS_RULE_TYPE_ID" precision="10" scale="0" not-null="true" />
             </key>
-            <one-to-many class="model.BusinessRule" />
+            <one-to-many class="model.BusinessRuleModel" />
         </set>
     </class>
 </hibernate-mapping>

@@ -11,7 +11,7 @@ BEGIN
         IF (v_column1 {comparison} v_value) THEN
             l_passed := TRUE;
         ELSE
-            RAISE_APPLICATION_ERROR(-20000, {error_message});
+            RAISE_APPLICATION_ERROR(-20000, '{error_message}');
         END IF;
     END IF;
 END;

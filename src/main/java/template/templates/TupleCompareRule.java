@@ -5,12 +5,16 @@
  */
 package template.templates;
 
+import model.BusinessRuleModel;
+import org.hibernate.Session;
+import template.Template;
+
 /**
  *
  * @author ismail
  */
-public class TupleCompareRule {
-    public boolean parse(){
+public class TupleCompareRule  implements Template{
+    public boolean parse(BusinessRuleModel rule, Session session){
         return true;
     }
     public String code(){
