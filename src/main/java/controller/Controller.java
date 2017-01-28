@@ -19,6 +19,7 @@ public abstract class Controller {
     static void setConnection(long projectId){
         Session openSession = HibernateUtil.getSessionFactory().openSession();
         ProjectModel project = (ProjectModel) openSession.get(ProjectModel.class, projectId);
+        System.out.println(project);
         serviceProvider.getTargetDatabaseService().setCredentials(
                 project.getDatabaseType(),
                 project.getDatabaseUrl(),

@@ -25,10 +25,9 @@ import spark.Response;
  */
 public class TableController extends Controller{
 
-    public static Map getTables(Request req, Response res) {
+    public static List getTables(Request req, Response res) {
         setConnection(Long.parseLong(req.params(":project_id")));
         List<Map> list = new ArrayList<Map>();
-        Map<String, List<Map>> tableList = new HashMap<String, List<Map>>();
         
         TargetDatabaseService targetDatabaseService = serviceProvider.getTargetDatabaseService();
         List<String> tables = targetDatabaseService.getTables();
@@ -39,8 +38,7 @@ public class TableController extends Controller{
             list.add(tableItem);
             
         }
-        tableList.put("tables", list);
-        return tableList;
+        return list;
     }
 
     public static Map getColumnsFromTable(Request req, Response res) {

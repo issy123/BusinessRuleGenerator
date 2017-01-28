@@ -24,8 +24,9 @@ public class TargetDatabaseService {
     Map<String,String> credentials = new HashMap();
 
     public TargetDatabaseService() {
-        this.register(new MysqlDialect());
+        this.register(new MySqlDialect());
         this.register(new OracleDialect());
+        this.register(new MsSqlDialect());
     }
 
     public void setCredentials(String type, String url, String databaseName, String username, String password){
@@ -33,7 +34,7 @@ public class TargetDatabaseService {
         this.credentials.put("DATABASE_URL", url);
         this.credentials.put("DATABASE_NAME", databaseName);
         this.credentials.put("DATABASE_USERNAME", username);
-        this.credentials.put("DATABASE_PASSWORD", username);
+        this.credentials.put("DATABASE_PASSWORD", password);
         try {
             this.setDialect(type);
         } catch (Exception ex) {
