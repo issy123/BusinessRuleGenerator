@@ -41,16 +41,13 @@ public class TableController extends Controller{
         return list;
     }
 
-    public static Map getColumnsFromTable(Request req, Response res) {
+    public static List getColumnsFromTable(Request req, Response res) {
         setConnection(Long.parseLong(req.params(":project_id")));
-        String tableName = req.params(":tablename");
 
-        Map<String, List<Map>> test = new HashMap<String, List<Map>>();
         TargetDatabaseService targetDatabaseService = serviceProvider.getTargetDatabaseService();
         
-
-        test.put("kolommen", targetDatabaseService.getColumns(tableName));
-        return test;
+        String tableName = req.params(":tablename");
+        return targetDatabaseService.getColumns(tableName);
     }
 
 }
