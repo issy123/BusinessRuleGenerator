@@ -5,13 +5,7 @@
  */
 package service.dialect;
 
-import java.sql.Connection;
-import java.sql.DatabaseMetaData;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.ResultSetMetaData;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -20,13 +14,13 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- *
  * @author ismail
  */
-public class MySqlDialect extends DatabaseDialect{
+public class MySqlDialect extends DatabaseDialect {
+
     Connection connection;
 
-    public final void createConnection(){
+    public final void createConnection() {
         try {
             String url = "jdbc:mysql://" + this.credentials.get("DATABASE_URL") + ":3306/" + this.credentials.get("DATABASE_NAME");
             System.out.println(url);
@@ -34,8 +28,7 @@ public class MySqlDialect extends DatabaseDialect{
             System.out.println(this.credentials.get("DATABASE_PASSWORD"));
             Class.forName("com.mysql.jdbc.Driver").newInstance();
             this.connection = DriverManager.getConnection(url, this.credentials.get("DATABASE_USERNAME"), this.credentials.get("DATABASE_PASSWORD"));
-        }
-        catch (ClassNotFoundException | IllegalAccessException | InstantiationException | SQLException | NullPointerException e1) {
+        } catch (ClassNotFoundException | IllegalAccessException | InstantiationException | SQLException | NullPointerException e1) {
             e1.printStackTrace();
         }
     }
@@ -92,11 +85,11 @@ public class MySqlDialect extends DatabaseDialect{
         } catch (SQLException ex) {
             ex.getMessage();
         }
-        return null;
+        return list;
     }
 
     @Override
-    public void insertBusinessRule(String businessRule) {
+    public boolean insertBusinessRule(String businessRule) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

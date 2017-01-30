@@ -5,20 +5,15 @@
  */
 package service.dialect;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.ResultSetMetaData;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import service.TargetConnection;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
- *
  * @author ismail
  */
 public class OracleDialect extends DatabaseDialect {
@@ -101,12 +96,17 @@ public class OracleDialect extends DatabaseDialect {
         } catch (SQLException ex) {
             ex.getMessage();
         }
-        return null;
+        return list;
     }
 
     @Override
-    public void insertBusinessRule(String businessRule) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public boolean insertBusinessRule(String businessRule) {
+        try {
+            return connection.createStatement().execute(businessRule);
+        } catch (SQLException ex) {
+            Logger.getLogger(OracleDialect.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return false;
     }
 
     @Override

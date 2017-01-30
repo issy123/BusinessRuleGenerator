@@ -1,10 +1,12 @@
 package template;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import model.BusinessRuleModel;
 import org.hibernate.Session;
 import util.HibernateUtil;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created by ismail on 1/22/2017.
@@ -35,7 +37,7 @@ public class BusinessRuleParser {
         templates.add(template);
     }
 
-    public boolean parse(Long businessRuleId) {
+    public Map<String, String> parse(Long businessRuleId) {
         Session openSession = HibernateUtil.getSessionFactory().openSession();
         BusinessRuleModel rule = (BusinessRuleModel) openSession.get(BusinessRuleModel.class, businessRuleId);
         String code = rule.getBusinessRuleType().getCode();
@@ -45,6 +47,9 @@ public class BusinessRuleParser {
             }
         }
         System.out.println("Unsupported business rule type: " + code);
-        return false;
+        Map result = new HashMap();
+        result.put("success", "false");
+        result.put("message", "Unsupported business rule type: " + code);
+        return result;
     }
 }

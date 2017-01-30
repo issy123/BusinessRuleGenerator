@@ -7,15 +7,12 @@ package config;
 
 import controller.BusinessRuleController;
 import controller.TableController;
-import spark.Request;
-import spark.Response;
-import static spark.Spark.before;
-import static spark.Spark.get;
-import static spark.Spark.post;
+import controller.ConnectionController;
+
+import static spark.Spark.*;
 import static util.JsonUtil.json;
 
 /**
- *
  * @author ismail
  */
 public class Router {
@@ -30,9 +27,10 @@ public class Router {
     }
 
     public void listen() {
-        
+
         before((request, response) -> response.type("application/json"));
         get("/:project_id/tables", TableController::getTables, json());
+        get("/:project_id/test_connection", ConnectionController::testConnection, json());
         get("/:project_id/table/:tablename/columns", TableController::getColumnsFromTable, json());
         post("/:project_id/generate/:business_rule_id", BusinessRuleController::generateBusinessRule, json());
     }

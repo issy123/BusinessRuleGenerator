@@ -5,13 +5,7 @@
  */
 package service.dialect;
 
-import java.sql.Connection;
-import java.sql.DatabaseMetaData;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.ResultSetMetaData;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -19,24 +13,22 @@ import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-
 /**
- *
  * @author ismail
  */
-public class MsSqlDialect extends DatabaseDialect{
+public class MsSqlDialect extends DatabaseDialect {
+
     Connection connection;
 
-    public final void createConnection(){
+    public final void createConnection() {
         try {
-            String url = "jdbc:sqlserver://" + this.credentials.get("DATABASE_URL") + ":1433;" +
-                         "DatabaseName=" +this.credentials.get("DATABASE_NAME") + ";"+
-                         "user="+ this.credentials.get("DATABASE_USERNAME") + ";"+
-                         "password=" + this.credentials.get("DATABASE_PASSWORD") + ";";
+            String url = "jdbc:sqlserver://" + this.credentials.get("DATABASE_URL") + ":1433;"
+                    + "DatabaseName=" + this.credentials.get("DATABASE_NAME") + ";"
+                    + "user=" + this.credentials.get("DATABASE_USERNAME") + ";"
+                    + "password=" + this.credentials.get("DATABASE_PASSWORD") + ";";
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver").newInstance();
             this.connection = DriverManager.getConnection(url);
-        }
-        catch (ClassNotFoundException | IllegalAccessException | InstantiationException | SQLException | NullPointerException e1) {
+        } catch (ClassNotFoundException | IllegalAccessException | InstantiationException | SQLException | NullPointerException e1) {
             e1.printStackTrace();
         }
     }
@@ -53,7 +45,7 @@ public class MsSqlDialect extends DatabaseDialect{
             List<String> tables = new ArrayList<String>();
             Statement stmt = connection.createStatement();
             ResultSet rs = stmt.executeQuery("SELECT * FROM INFORMATION_SCHEMA.TABLES AS data WHERE TABLE_TYPE = 'BASE TABLE'");
-  
+
             while (rs.next()) {
                 tables.add(rs.getString("TABLE_NAME"));
             }
@@ -93,11 +85,11 @@ public class MsSqlDialect extends DatabaseDialect{
         } catch (SQLException ex) {
             ex.getMessage();
         }
-        return null;
+        return list;
     }
 
     @Override
-    public void insertBusinessRule(String businessRule) {
+    public boolean insertBusinessRule(String businessRule) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

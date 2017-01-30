@@ -40,17 +40,17 @@ made subject to such option by the copyright holder.
 Contributor(s):
 -->
 <hibernate-reverse-engineering>
-  <schema-selection match-schema="TOSAD_2016_2B_TEAM3"/>
-  <table-filter match-name="ATTRIBUTE_RANGE_RULE"/>
-  <table-filter match-name="ROLE"/>
-  <table-filter match-name="CATEGORY"/>
-  <table-filter match-name="BUSINESS_RULE"/>
-  <table-filter match-name="user"/>
-  <table-filter match-name="ATTRIBUTE_LIST_RULE_ITEM"/>
-  <table-filter match-name="ATTRIBUTE_LIST_RULE"/>
-  <table-filter match-name="PROJECT"/>
-  <table-filter match-name="COMPARE_RULE"/>
-  <table-filter match-name="USER_HAS_PROJECT"/>
-  <table-filter match-name="BUSINESS_RULE_TYPE"/>
-  <table-filter match-name="OTHER_RULE"/>
+    <schema-selection match-schema="TOSAD_2016_2B_TEAM3"/>
+    <table-filter match-name="ATTRIBUTE_RANGE_RULE"/>
+    <table-filter match-name="ROLE"/>
+    <table-filter match-name="CATEGORY"/>
+    <table-filter match-name="BUSINESS_RULE"/>
+    <table-filter match-name="user"/>
+    <table-filter match-name="ATTRIBUTE_LIST_RULE_ITEM"/>
+    <table-filter match-name="ATTRIBUTE_LIST_RULE"/>
+    <table-filter match-name="PROJECT"/>
+    <table-filter match-name="COMPARE_RULE"/>
+    <table-filter match-name="USER_HAS_PROJECT"/>
+    <table-filter match-name="BUSINESS_RULE_TYPE"/>
+    <table-filter match-name="OTHER_RULE"/>
 </hibernate-reverse-engineering>

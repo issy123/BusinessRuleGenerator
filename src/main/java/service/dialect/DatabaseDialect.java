@@ -11,19 +11,26 @@ import java.util.List;
 import java.util.Map;
 
 /**
- *
  * @author ismail
  */
 public abstract class DatabaseDialect {
-    Map<String,String> credentials = new HashMap<String,String>();
-    public void setCredentials(Map<String,String> credentials){
+
+    Map<String, String> credentials = new HashMap<String, String>();
+
+    public void setCredentials(Map<String, String> credentials) {
         this.credentials = credentials;
         this.onCredentialsReceived();
     }
+
     public abstract void onCredentialsReceived();
+
     public abstract String getType();
+
     public abstract List<String> getTables();
+
     public abstract List<Map> getColumns(String tablename);
-    public abstract void insertBusinessRule(String businessRule);
+
+    public abstract boolean insertBusinessRule(String businessRule);
+
     public abstract ArrayList<String> getBusinessRules();
 }

@@ -8,11 +8,14 @@ package template;
 import model.BusinessRuleModel;
 import org.hibernate.Session;
 
+import java.util.Map;
+
 /**
- *
  * @author ismail
  */
 public interface Template {
-    public boolean parse(BusinessRuleModel rule, Session session);
+
+    public Map<String, String> parse(BusinessRuleModel rule, Session session);
+
     public String code();
 }

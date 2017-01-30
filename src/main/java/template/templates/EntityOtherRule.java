@@ -5,19 +5,24 @@
  */
 package template.templates;
 
+import java.util.Map;
 import model.BusinessRuleModel;
 import org.hibernate.Session;
 import template.Template;
 
 /**
- *
  * @author ismail
  */
-public class EntityOtherRule  implements Template{
-    public boolean parse(BusinessRuleModel rule, Session session){
-        return true;
+public class EntityOtherRule implements Template {
+
+    @Override
+    public Map<String, String> parse(BusinessRuleModel rule, Session session) {
+
+        return null;
     }
-    public String code(){
+
+    @Override
+    public String code() {
         return "EOTH";
     }
 }

@@ -11,12 +11,13 @@ import service.ServiceProvider;
 import util.HibernateUtil;
 
 /**
- *
  * @author ismail
  */
 public abstract class Controller {
-    public static ServiceProvider serviceProvider = new ServiceProvider();
-    static void setConnection(long projectId){
+
+    public static ServiceProvider serviceProvider = ServiceProvider.getInstance();
+
+    static void setConnection(long projectId) {
         Session openSession = HibernateUtil.getSessionFactory().openSession();
         ProjectModel project = (ProjectModel) openSession.get(ProjectModel.class, projectId);
         System.out.println(project);
@@ -27,5 +28,5 @@ public abstract class Controller {
                 project.getDatabaseUsername(),
                 project.getDatabasePassword()
         );
-    };
+    }
 }

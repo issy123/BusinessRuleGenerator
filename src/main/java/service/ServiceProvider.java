@@ -6,12 +6,22 @@
 package service;
 
 /**
- *
  * @author ismail
  */
 public class ServiceProvider {
+
+    public static ServiceProvider instance = new ServiceProvider();
     TargetDatabaseService targetDatabaseService = new TargetDatabaseService();
-    public TargetDatabaseService getTargetDatabaseService(){
+
+    private ServiceProvider() {
+
+    }
+
+    public static ServiceProvider getInstance() {
+        return instance;
+    }
+
+    public TargetDatabaseService getTargetDatabaseService() {
         return this.targetDatabaseService;
     }
 }

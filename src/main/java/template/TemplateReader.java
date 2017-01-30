@@ -5,6 +5,8 @@
  */
 package template;
 
+import template.templates.AttributeCompareRule;
+
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.nio.charset.StandardCharsets;
@@ -12,21 +14,22 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import template.templates.AttributeCompareRule;
 
 /**
- *
  * @author ismail
  */
 public class TemplateReader {
+
     public static final TemplateReader instance = new TemplateReader();
-    
-    private TemplateReader(){}
-    
-    public static TemplateReader getInstance(){
+
+    private TemplateReader() {
+    }
+
+    public static TemplateReader getInstance() {
         return instance;
     }
-    public String readFile(String templatePath){
+
+    public String readFile(String templatePath) {
         ClassLoader classLoader = getClass().getClassLoader();
         String text = "";
         try {

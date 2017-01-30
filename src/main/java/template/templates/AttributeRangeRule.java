@@ -5,22 +5,54 @@
  */
 package template.templates;
 
-import java.util.HashMap;
 import model.AttributeRangeRuleModel;
 import model.BusinessRuleModel;
 import org.hibernate.Session;
-import template.TemplateReader;
+import service.ServiceProvider;
 import template.Template;
+import template.TemplateReader;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /**
- *
  * @author ismail
  */
-public class AttributeRangeRule  implements Template{
-    public boolean parse(BusinessRuleModel rule, Session session){
-        AttributeRangeRuleModel rangeRule = (AttributeRangeRuleModel) session.get(AttributeRangeRuleModel.class, rule.getId());
+public class AttributeRangeRule implements Template {
+
+    @Override
+    public Map<String, String> parse(BusinessRuleModel rule, Session session) {
+        String template = parseTemplate(rule, session);
+        Map result = new HashMap();
+        if (template.equals("")) {
+            result.put("success", "true");
+            result.put("message", "Failed to parse business rule");
+            return result;
+        }
+        System.out.println(template);
+        if (ServiceProvider.getInstance()
+                .getTargetDatabaseService()
+                .insertBusinessRule(template)) {
+            result.put("success", "true");
+            result.put("message", "Business rule created");
+            return result;
+        }
+
+        result.put("success", "false");
+        result.put("message", "Creating business rule on target database failed");
+        return result;
+    }
+
+    public String parseTemplate(BusinessRuleModel rule, Session session) {
+        AttributeRangeRuleModel rangeRule;
+        rangeRule = (AttributeRangeRuleModel) session.get(
+                AttributeRangeRuleModel.class,
+                rule.getId()
+        );
         System.out.println("reading file");
-        String template = TemplateReader.getInstance().readFile("oracle/AttributeRangeRule.sql");
+        String template = TemplateReader.getInstance().readFile(
+                rule.getProject().getDatabaseType().toLowerCase() + "/AttributeRangeRule.sql"
+        );
         System.out.println("readed file");
         HashMap<String, String> hmap = new HashMap<String, String>();
         /*Adding elements to HashMap*/
@@ -31,17 +63,16 @@ public class AttributeRangeRule  implements Template{
         hmap.put("{min}", rangeRule.getMin());
         hmap.put("{max}", rangeRule.getMax());
 
-        String result = "";
-        for(HashMap.Entry<String, String> placeholder : hmap.entrySet())
-        {
-            result = template.replace(placeholder.getKey(), placeholder.getValue());
-            template = result;
+        String parsedTemplate = "";
+        for (HashMap.Entry<String, String> placeholder : hmap.entrySet()) {
+            parsedTemplate = template.replace(placeholder.getKey(), placeholder.getValue());
+            template = parsedTemplate;
         }
-        System.out.println(template);
-        return true;
+        return template;
     }
-    
-    public String code(){
+
+    @Override
+    public String code() {
         return "ARNG";
     }
 }

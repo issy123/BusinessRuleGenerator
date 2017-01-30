@@ -76,16 +76,16 @@ public class ProjectModel implements java.io.Serializable {
         return this.databasePassword;
     }
 
-    public void setDatabaseType(String databaseType) {
-        this.databaseType = databaseType;
+    public void setDatabasePassword(String databasePassword) {
+        this.databasePassword = databasePassword;
     }
 
     public String getDatabaseType() {
         return this.databaseType;
     }
 
-    public void setDatabasePassword(String databasePassword) {
-        this.databasePassword = databasePassword;
+    public void setDatabaseType(String databaseType) {
+        this.databaseType = databaseType;
     }
 
     public String getDatabaseName() {

@@ -1,11 +1,12 @@
 package config;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
 import service.TargetConnection;
 import template.BusinessRuleParser;
 import template.templates.*;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -14,11 +15,11 @@ import template.templates.*;
  */
 
 /**
- *
  * @author ismail
  */
 public class Config {
-    public static void start(){
+
+    public static void start() {
         String url = "jdbc:mysql://h2652979.stratoserver.net:3306/tosad";
         String username = "root";
         String password = "test123";
@@ -33,7 +34,7 @@ public class Config {
             throw new IllegalStateException("Cannot connect the database!", e);
         }
         TargetConnection targetConnection = TargetConnection.getInstance();
-        targetConnection.setCredentials("oracle","ondora02.hu.nl:8521/cursus02.hu.nl","tosad_2016_2b_team3_target","tosad_2016_2b_team3_target");
+        targetConnection.setCredentials("oracle", "ondora02.hu.nl:8521/cursus02.hu.nl", "tosad_2016_2b_team3_target", "tosad_2016_2b_team3_target");
         BusinessRuleParser businessRuleParser = BusinessRuleParser.getInstance();
         businessRuleParser.register(new AttributeCompareRule());
         businessRuleParser.register(new AttributeListRule());
