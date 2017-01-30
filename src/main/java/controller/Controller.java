@@ -17,9 +17,12 @@ public abstract class Controller {
 
     public static ServiceProvider serviceProvider = ServiceProvider.getInstance();
 
-    static void setConnection(long projectId) {
+    static boolean setConnection(long projectId) {
         Session openSession = HibernateUtil.getSessionFactory().openSession();
         ProjectModel project = (ProjectModel) openSession.get(ProjectModel.class, projectId);
+        if(project == null){
+            return false;
+        }
         System.out.println(project);
         serviceProvider.getTargetDatabaseService().setCredentials(
                 project.getDatabaseType(),
@@ -28,5 +31,6 @@ public abstract class Controller {
                 project.getDatabaseUsername(),
                 project.getDatabasePassword()
         );
+        return true;
     }
 }

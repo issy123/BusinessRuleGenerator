@@ -18,7 +18,11 @@ import java.util.Map;
 public class BusinessRuleController extends Controller {
 
     public static Map generateBusinessRule(Request req, Response res) {
-        setConnection(Long.parseLong(req.params(":project_id")));
+        if(
+                !setConnection(Long.parseLong(req.params(":project_id")))
+        ){
+            return new HashMap();
+        }
 
         System.out.println("Received body:");
         System.out.println(req.body());

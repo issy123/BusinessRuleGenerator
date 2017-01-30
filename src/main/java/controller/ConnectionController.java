@@ -17,8 +17,13 @@ import java.util.Map;
 public class ConnectionController extends Controller {
 
     public static Map<String, String> testConnection(Request req, Response res) {
-        setConnection(Long.parseLong(req.params(":project_id")));
         Map<String, String> result = new HashMap();
+        if(
+                !setConnection(Long.parseLong(req.params(":project_id")))
+        ){
+            result.put("success", "false");
+            return result;
+        }
         result.put("success", String.valueOf(serviceProvider.getTargetDatabaseService().testConnection()));
         return result;
     }

@@ -20,7 +20,11 @@ import java.util.Map;
 public class TableController extends Controller {
 
     public static List getTables(Request req, Response res) {
-        setConnection(Long.parseLong(req.params(":project_id")));
+        if(
+                !setConnection(Long.parseLong(req.params(":project_id")))
+        ){
+            return new ArrayList();
+        }
         List<Map> list = new ArrayList<>();
 
         TargetDatabaseService targetDatabaseService = serviceProvider.getTargetDatabaseService();
@@ -36,7 +40,11 @@ public class TableController extends Controller {
     }
 
     public static List getColumnsFromTable(Request req, Response res) {
-        setConnection(Long.parseLong(req.params(":project_id")));
+        if(
+                !setConnection(Long.parseLong(req.params(":project_id")))
+        ){
+            return new ArrayList();
+        }
 
         TargetDatabaseService targetDatabaseService = serviceProvider.getTargetDatabaseService();
 

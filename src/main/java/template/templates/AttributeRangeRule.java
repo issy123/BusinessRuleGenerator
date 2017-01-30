@@ -22,7 +22,6 @@ import java.util.Map;
  */
 public class AttributeRangeRule implements Template {
 
-    private static final Logger logger = LogManager.getLogger("");
     @Override
     public Map<String, String> parse(BusinessRuleModel rule, Session session) {
         String template = parseTemplate(rule, session);
