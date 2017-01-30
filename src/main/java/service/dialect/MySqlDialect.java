@@ -42,9 +42,9 @@ public class MySqlDialect extends DatabaseDialect {
 
     @Override
     public List<String> getTables() {
-        DatabaseMetaData md = null;
+        DatabaseMetaData md;
         try {
-            List<String> tables = new ArrayList<String>();
+            List<String> tables = new ArrayList<>();
             md = connection.getMetaData();
             ResultSet rs = md.getTables(null, null, "%", null);
             while (rs.next()) {
@@ -60,9 +60,8 @@ public class MySqlDialect extends DatabaseDialect {
 
     @Override
     public List<Map> getColumns(String tablename) {
-        List<Map> list = new ArrayList<Map>();
+        List<Map> list = new ArrayList<>();
         try {
-
             Statement stmt = null;
             String query = "select * from " + tablename + " LIMIT 1;";
             try {
@@ -70,7 +69,7 @@ public class MySqlDialect extends DatabaseDialect {
                 ResultSet rs = stmt.executeQuery(query);
                 ResultSetMetaData rsmd = rs.getMetaData();
                 for (int i = 1; i <= rsmd.getColumnCount(); i++) {
-                    Map<String, String> tables = new HashMap<String, String>();
+                    Map<String, String> tables = new HashMap<>();
                     tables.put("column_name", rsmd.getColumnName(i));
                     tables.put("column_type", rsmd.getColumnTypeName(i));
                     tables.put("nullable", Integer.toString(rsmd.isNullable(i)));

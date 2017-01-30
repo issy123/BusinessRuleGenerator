@@ -11,6 +11,8 @@ import org.hibernate.Session;
 import service.ServiceProvider;
 import template.Template;
 import template.TemplateReader;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -20,6 +22,7 @@ import java.util.Map;
  */
 public class AttributeRangeRule implements Template {
 
+    private static final Logger logger = LogManager.getLogger("");
     @Override
     public Map<String, String> parse(BusinessRuleModel rule, Session session) {
         String template = parseTemplate(rule, session);
@@ -37,7 +40,6 @@ public class AttributeRangeRule implements Template {
             result.put("message", "Business rule created");
             return result;
         }
-
         result.put("success", "false");
         result.put("message", "Creating business rule on target database failed");
         return result;
@@ -54,7 +56,7 @@ public class AttributeRangeRule implements Template {
                 rule.getProject().getDatabaseType().toLowerCase() + "/AttributeRangeRule.sql"
         );
         System.out.println("readed file");
-        HashMap<String, String> hmap = new HashMap<String, String>();
+        HashMap<String, String> hmap = new HashMap<>();
         /*Adding elements to HashMap*/
         hmap.put("{error_message}", rule.getErrorMessage());
         hmap.put("{table_name}", rule.getTableName());
@@ -63,7 +65,7 @@ public class AttributeRangeRule implements Template {
         hmap.put("{min}", rangeRule.getMin());
         hmap.put("{max}", rangeRule.getMax());
 
-        String parsedTemplate = "";
+        String parsedTemplate;
         for (HashMap.Entry<String, String> placeholder : hmap.entrySet()) {
             parsedTemplate = template.replace(placeholder.getKey(), placeholder.getValue());
             template = parsedTemplate;

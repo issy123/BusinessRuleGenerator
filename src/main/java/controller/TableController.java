@@ -21,12 +21,12 @@ public class TableController extends Controller {
 
     public static List getTables(Request req, Response res) {
         setConnection(Long.parseLong(req.params(":project_id")));
-        List<Map> list = new ArrayList<Map>();
+        List<Map> list = new ArrayList<>();
 
         TargetDatabaseService targetDatabaseService = serviceProvider.getTargetDatabaseService();
         List<String> tables = targetDatabaseService.getTables();
         for (String table : tables) {
-            Map<String, String> tableItem = new HashMap<String, String>();
+            Map<String, String> tableItem = new HashMap<>();
             tableItem.put("key", table);
             tableItem.put("tablevalue", table);
             list.add(tableItem);
