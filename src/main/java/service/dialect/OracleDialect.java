@@ -25,14 +25,16 @@ public class OracleDialect extends DatabaseDialect {
         this.createConnection();
     }
 
-    public void createConnection() {
+    public boolean createConnection() {
         try {
             String url = "jdbc:oracle:thin:@//" + this.credentials.get("DATABASE_URL");
             Class.forName("oracle.jdbc.driver.OracleDriver").newInstance();
             this.connection = DriverManager.getConnection(url, this.credentials.get("DATABASE_USERNAME"), this.credentials.get("DATABASE_PASSWORD"));
+            return true;
         } catch (ClassNotFoundException | IllegalAccessException | InstantiationException | SQLException | NullPointerException e1) {
             e1.printStackTrace();
         }
+        return false;
     }
 
     @Override
@@ -112,6 +114,11 @@ public class OracleDialect extends DatabaseDialect {
     @Override
     public ArrayList<String> getBusinessRules() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    
+    @Override
+    public boolean testConnection() {
+        return this.createConnection();
     }
 
 }

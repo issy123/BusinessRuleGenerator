@@ -20,7 +20,7 @@ public class MsSqlDialect extends DatabaseDialect {
 
     Connection connection;
 
-    public final void createConnection() {
+    public final boolean createConnection() {
         try {
             String url = "jdbc:sqlserver://" + this.credentials.get("DATABASE_URL") + ":1433;"
                     + "DatabaseName=" + this.credentials.get("DATABASE_NAME") + ";"
@@ -28,9 +28,11 @@ public class MsSqlDialect extends DatabaseDialect {
                     + "password=" + this.credentials.get("DATABASE_PASSWORD") + ";";
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver").newInstance();
             this.connection = DriverManager.getConnection(url);
+            return true;
         } catch (ClassNotFoundException | IllegalAccessException | InstantiationException | SQLException | NullPointerException e1) {
             e1.printStackTrace();
         }
+        return false;
     }
 
     @Override
@@ -101,6 +103,11 @@ public class MsSqlDialect extends DatabaseDialect {
     @Override
     public void onCredentialsReceived() {
         this.createConnection();
+    }
+
+    @Override
+    public boolean testConnection() {
+        return this.createConnection();
     }
 
 }

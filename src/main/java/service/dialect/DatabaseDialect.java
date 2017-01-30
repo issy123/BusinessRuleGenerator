@@ -22,6 +22,10 @@ public abstract class DatabaseDialect {
         this.onCredentialsReceived();
     }
 
+    public abstract boolean createConnection();
+    
+    public abstract boolean testConnection();
+    
     public abstract void onCredentialsReceived();
 
     public abstract String getType();

@@ -67,6 +67,10 @@ public class TargetDatabaseService {
     public List<Map> getColumns(String tablename) {
         return this.dialect.getColumns(tablename);
     }
+    
+    public boolean testConnection() {
+        return this.dialect.testConnection();
+    }
 
     public boolean insertBusinessRule(String businessRule) {
         return this.dialect.insertBusinessRule(businessRule);

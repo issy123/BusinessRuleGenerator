@@ -20,7 +20,7 @@ public class MySqlDialect extends DatabaseDialect {
 
     Connection connection;
 
-    public final void createConnection() {
+    public final boolean createConnection() {
         try {
             String url = "jdbc:mysql://" + this.credentials.get("DATABASE_URL") + ":3306/" + this.credentials.get("DATABASE_NAME");
             System.out.println(url);
@@ -28,9 +28,11 @@ public class MySqlDialect extends DatabaseDialect {
             System.out.println(this.credentials.get("DATABASE_PASSWORD"));
             Class.forName("com.mysql.jdbc.Driver").newInstance();
             this.connection = DriverManager.getConnection(url, this.credentials.get("DATABASE_USERNAME"), this.credentials.get("DATABASE_PASSWORD"));
+            return true;
         } catch (ClassNotFoundException | IllegalAccessException | InstantiationException | SQLException | NullPointerException e1) {
             e1.printStackTrace();
         }
+        return false;
     }
 
     @Override
@@ -101,5 +103,10 @@ public class MySqlDialect extends DatabaseDialect {
     @Override
     public void onCredentialsReceived() {
         this.createConnection();
+    }
+    
+    @Override
+    public boolean testConnection() {
+        return this.createConnection();
     }
 }
