@@ -42,7 +42,7 @@ public class MsSqlDialect extends DatabaseDialect {
     public List<String> getTables() {
         DatabaseMetaData md = null;
         try {
-            List<String> tables = new ArrayList<String>();
+            List<String> tables = new ArrayList<>();
             Statement stmt = connection.createStatement();
             ResultSet rs = stmt.executeQuery("SELECT * FROM INFORMATION_SCHEMA.TABLES AS data WHERE TABLE_TYPE = 'BASE TABLE'");
 
@@ -58,7 +58,7 @@ public class MsSqlDialect extends DatabaseDialect {
 
     @Override
     public List<Map> getColumns(String tablename) {
-        List<Map> list = new ArrayList<Map>();
+        List<Map> list = new ArrayList<>();
         try {
 
             Statement stmt = null;
@@ -68,7 +68,7 @@ public class MsSqlDialect extends DatabaseDialect {
                 ResultSet rs = stmt.executeQuery(query);
                 ResultSetMetaData rsmd = rs.getMetaData();
                 for (int i = 1; i <= rsmd.getColumnCount(); i++) {
-                    Map<String, String> tables = new HashMap<String, String>();
+                    Map<String, String> tables = new HashMap<>();
                     tables.put("column_name", rsmd.getColumnName(i));
                     tables.put("column_type", rsmd.getColumnTypeName(i));
                     tables.put("nullable", Integer.toString(rsmd.isNullable(i)));

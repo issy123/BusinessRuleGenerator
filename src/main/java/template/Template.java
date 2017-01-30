@@ -15,7 +15,7 @@ import java.util.Map;
  */
 public interface Template {
 
-    public Map<String, String> parse(BusinessRuleModel rule, Session session);
+    Map<String, String> parse(BusinessRuleModel rule, Session session);
 
-    public String code();
+    String code();
 }

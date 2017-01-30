@@ -15,7 +15,7 @@ import java.util.Map;
  */
 public abstract class DatabaseDialect {
 
-    Map<String, String> credentials = new HashMap<String, String>();
+    Map<String, String> credentials = new HashMap<>();
 
     public void setCredentials(Map<String, String> credentials) {
         this.credentials = credentials;

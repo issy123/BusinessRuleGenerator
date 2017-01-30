@@ -44,7 +44,7 @@ public class OracleDialect extends DatabaseDialect {
     public List<String> getTables() {
         System.out.println("GETTING TABLES");
         System.out.println(credentials);
-        List<String> tables = new ArrayList<String>();
+        List<String> tables = new ArrayList<>();
         try {
             Statement stmt = null;
             String query = "SELECT table_name FROM user_tables";
@@ -69,7 +69,7 @@ public class OracleDialect extends DatabaseDialect {
 
     @Override
     public List<Map> getColumns(String tablename) {
-        List<Map> list = new ArrayList<Map>();
+        List<Map> list = new ArrayList<>();
         try {
 
             Statement stmt = null;
