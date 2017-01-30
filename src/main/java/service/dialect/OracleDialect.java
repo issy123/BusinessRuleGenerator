@@ -104,8 +104,11 @@ public class OracleDialect extends DatabaseDialect {
     @Override
     public boolean insertBusinessRule(String businessRule) {
         try {
-            return connection.createStatement().execute(businessRule);
+            connection.createStatement().execute(businessRule);
+            return true;
         } catch (SQLException ex) {
+            ex.printStackTrace();
+            System.out.println(ex.getMessage());
             Logger.getLogger(OracleDialect.class.getName()).log(Level.SEVERE, null, ex);
         }
         return false;

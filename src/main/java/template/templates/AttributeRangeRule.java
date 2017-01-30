@@ -11,8 +11,6 @@ import org.hibernate.Session;
 import service.ServiceProvider;
 import template.Template;
 import template.TemplateReader;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 import java.util.HashMap;
 import java.util.Map;

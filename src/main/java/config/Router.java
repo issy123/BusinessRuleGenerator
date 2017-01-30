@@ -32,6 +32,7 @@ public class Router {
         get("/:project_id/tables", TableController::getTables, json());
         get("/:project_id/test_connection", ConnectionController::testConnection, json());
         get("/:project_id/table/:tablename/columns", TableController::getColumnsFromTable, json());
-        post("/:project_id/generate/:business_rule_id", BusinessRuleController::generateBusinessRule, json());
+        post("/:project_id/generate", BusinessRuleController::generateBusinessRule, json());
+        get("/:project_id/generate/all", BusinessRuleController::generateAllBusinessRules, json());
     }
 }
