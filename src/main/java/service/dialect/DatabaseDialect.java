@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import model.BusinessRuleModel;
 
 /**
  * @author ismail
@@ -35,6 +36,8 @@ public abstract class DatabaseDialect {
     public abstract List<Map> getColumns(String tablename);
 
     public abstract boolean insertBusinessRule(String businessRule);
+
+    public abstract boolean removeBusinessRule(BusinessRuleModel businessRule);
 
     public abstract ArrayList<String> getBusinessRules();
 }

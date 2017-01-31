@@ -12,6 +12,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import model.BusinessRuleModel;
 
 /**
  * @author ismail
@@ -108,6 +109,11 @@ public class MsSqlDialect extends DatabaseDialect {
     @Override
     public boolean testConnection() {
         return this.createConnection();
+    }
+
+    @Override
+    public boolean removeBusinessRule(BusinessRuleModel businessRule) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }

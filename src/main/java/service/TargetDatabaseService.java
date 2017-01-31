@@ -16,6 +16,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import model.BusinessRuleModel;
 
 /**
  * @author ismail
@@ -74,6 +75,10 @@ public class TargetDatabaseService {
 
     public boolean insertBusinessRule(String businessRule) {
         return this.dialect.insertBusinessRule(businessRule);
+    }
+
+    public boolean removeBusinessRule(BusinessRuleModel businessRule) {
+        return this.dialect.removeBusinessRule(businessRule);
     }
 
     public void getBusinessRules() {

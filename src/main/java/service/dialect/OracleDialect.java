@@ -12,6 +12,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import model.BusinessRuleModel;
 
 /**
  * @author ismail
@@ -122,6 +123,35 @@ public class OracleDialect extends DatabaseDialect {
     @Override
     public boolean testConnection() {
         return this.createConnection();
+    }
+
+    @Override
+    public boolean removeBusinessRule(BusinessRuleModel businessRule) {
+        try {
+            Statement stmt = connection.createStatement();
+            ResultSet rs = stmt.executeQuery(
+                "SELECT * FROM USER_TRIGGERS " +
+                "WHERE TABLE_OWNER = 'TOSAD_2016_2B_TEAM3_TARGET' AND" +
+                "TRIGGER_NAME = 'BRG_" + businessRule.getBusinessRuleType().getCode() + "_" + businessRule.getTableName() + "_" + businessRule.getId() + "_TRG'"
+            );
+            while(rs.next()){
+                //Retrieve by column name
+                String triggerName  = rs.getString("TRIGGER_NAME");
+
+                //Display values
+                System.out.print("TRIGGER_NAME: " + triggerName);
+                return this.dropTrigger();
+             }
+             rs.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(OracleDialect.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    
+    public boolean dropTrigger(String triggerName){
+        DROP TRIGGER hr.salary_check;
     }
 
 }

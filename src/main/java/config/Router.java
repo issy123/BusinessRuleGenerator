@@ -27,12 +27,13 @@ public class Router {
     }
 
     public void listen() {
-
         before((request, response) -> response.type("application/json"));
         get("/:project_id/tables", TableController::getTables, json());
         get("/:project_id/test_connection", ConnectionController::testConnection, json());
         get("/:project_id/table/:tablename/columns", TableController::getColumnsFromTable, json());
         post("/:project_id/generate", BusinessRuleController::generateBusinessRule, json());
         get("/:project_id/generate/all", BusinessRuleController::generateAllBusinessRules, json());
+        post("/:project_id/remove", BusinessRuleController::removeBusinessRule, json());
+        get("/:project_id/remove/all", BusinessRuleController::removeAllBusinessRules, json());
     }
 }
