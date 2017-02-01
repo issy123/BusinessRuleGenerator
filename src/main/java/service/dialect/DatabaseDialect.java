@@ -27,6 +27,9 @@ public abstract class DatabaseDialect {
     
     public abstract boolean testConnection();
     
+    
+    public abstract boolean closeConnection();
+    
     public abstract void onCredentialsReceived();
 
     public abstract String getType();

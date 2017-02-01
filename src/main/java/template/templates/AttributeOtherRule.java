@@ -5,10 +5,14 @@
  */
 package template.templates;
 
+import java.util.HashMap;
 import java.util.Map;
+import model.AttributeRangeRuleModel;
 import model.BusinessRuleModel;
+import model.OtherRuleModel;
 import org.hibernate.Session;
 import template.Template;
+import template.TemplateReader;
 
 /**
  * @author ismail
@@ -20,7 +24,37 @@ public class AttributeOtherRule implements Template {
 
         return null;
     }
+    public String parseTemplate(BusinessRuleModel rule, Session session) {
+        OtherRuleModel otherRule;
+        otherRule = (OtherRuleModel) session.get(
+                OtherRuleModel.class,
+                rule.getId()
+        );
+        System.out.println("reading file");
+        String template;
+//        if(rangeRule.get){
+            template = TemplateReader.getInstance().readFile(
+                rule.getProject().getDatabaseType().toLowerCase() + "/AttributeOtherRule.sql"
+            );
+            
+//        }
+        System.out.println("readed file");
+        HashMap<String, String> hmap = new HashMap<>();
+        /*Adding elements to HashMap*/
+        hmap.put("{error_message}", rule.getErrorMessage());
+        hmap.put("{table_name}", rule.getTableName());
+        hmap.put("{column_name}", rule.getColumnName());
+//        hmap.put("{range_type}", otherRule.getRangeType());
+//        hmap.put("{min}", otherRule.getMin());
+//        hmap.put("{max}", otherRule.getMax());
 
+        String parsedTemplate;
+        for (HashMap.Entry<String, String> placeholder : hmap.entrySet()) {
+            parsedTemplate = template.replace(placeholder.getKey(), placeholder.getValue());
+            template = parsedTemplate;
+        }
+        return template;
+    }
     @Override
     public String code() {
         return "AOTH";

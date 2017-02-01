@@ -124,6 +124,17 @@ public class OracleDialect extends DatabaseDialect {
     public boolean testConnection() {
         return this.createConnection();
     }
+    
+    @Override
+    public boolean closeConnection() {
+        try {
+            this.connection.close();
+            return true;
+        } catch (SQLException ex) {
+            Logger.getLogger(OracleDialect.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return false;
+    }
 
     @Override
     public boolean removeBusinessRule(BusinessRuleModel businessRule) {
@@ -131,8 +142,9 @@ public class OracleDialect extends DatabaseDialect {
             Statement stmt = connection.createStatement();
             ResultSet rs = stmt.executeQuery(
                 "SELECT * FROM USER_TRIGGERS " +
-                "WHERE TABLE_OWNER = 'TOSAD_2016_2B_TEAM3_TARGET' AND" +
-                "TRIGGER_NAME = 'BRG_" + businessRule.getBusinessRuleType().getCode() + "_" + businessRule.getTableName() + "_" + businessRule.getId() + "_TRG'"
+                "WHERE TABLE_OWNER = '" + credentials.get("DATABASE_NAME") + "' AND" +
+                "TRIGGER_NAME = 'BRG_" + businessRule.getBusinessRuleType().getCode() + "_" + businessRule.getTableName() + "_" + businessRule.getId() + "_TRG'" +
+                        ""
             );
             while(rs.next()){
                 //Retrieve by column name
@@ -140,18 +152,37 @@ public class OracleDialect extends DatabaseDialect {
 
                 //Display values
                 System.out.print("TRIGGER_NAME: " + triggerName);
-                return this.dropTrigger();
+                return this.dropTrigger(triggerName);
              }
              rs.close();
         } catch (SQLException ex) {
             Logger.getLogger(OracleDialect.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return false;
     }
     
     public boolean dropTrigger(String triggerName){
-        DROP TRIGGER hr.salary_check;
+        try {
+            Statement stmt = connection.createStatement();
+            ResultSet rs = stmt.executeQuery(
+                    "DROP TRIGGER " + triggerName + ";"
+            );
+            stmt = connection.createStatement();
+            rs = stmt.executeQuery(
+                    "SELECT * FROM USER_TRIGGERS " +
+                    "WHERE TABLE_OWNER = '" + credentials.get("DATABASE_NAME") + "' AND" +
+                    "TRIGGER_NAME = '" + triggerName + "'"
+            );
+            if(rs.first()){
+                System.out.println("trigger name still exists");
+                return false;
+            }
+            
+            return true;
+        } catch (SQLException ex) {
+            Logger.getLogger(OracleDialect.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return false;
     }
 
 }

@@ -72,6 +72,10 @@ public class TargetDatabaseService {
     public boolean testConnection() {
         return this.dialect.testConnection();
     }
+    
+    public boolean closeConnection() {
+        return this.dialect.closeConnection();
+    }
 
     public boolean insertBusinessRule(String businessRule) {
         return this.dialect.insertBusinessRule(businessRule);

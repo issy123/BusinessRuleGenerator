@@ -41,6 +41,7 @@ public class BusinessRuleController extends Controller {
         for (int i = 0; i < rules.size(); i++) {
             results.add(parser.parse(rules.get(i).getAsLong()));
         }
+        serviceProvider.getTargetDatabaseService().closeConnection();
         return results;
     }
     
@@ -59,6 +60,7 @@ public class BusinessRuleController extends Controller {
             BusinessRuleModel currentBusinessRule = (BusinessRuleModel) businessRule;
             results.add(parser.parse(currentBusinessRule.getId()));
         }
+        serviceProvider.getTargetDatabaseService().closeConnection();
         return results;
     }
     
@@ -81,6 +83,7 @@ public class BusinessRuleController extends Controller {
         for (int i = 0; i < rules.size(); i++) {
             results.add(parser.parse(rules.get(i).getAsLong()));
         }
+        serviceProvider.getTargetDatabaseService().closeConnection();
         return results;
     }
     
@@ -99,6 +102,9 @@ public class BusinessRuleController extends Controller {
             BusinessRuleModel currentBusinessRule = (BusinessRuleModel) businessRule;
             results.add(parser.parse(currentBusinessRule.getId()));
         }
+        
+        serviceProvider.getTargetDatabaseService().closeConnection();
+        
         return results;
     }
 

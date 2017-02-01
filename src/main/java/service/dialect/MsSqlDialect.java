@@ -110,7 +110,18 @@ public class MsSqlDialect extends DatabaseDialect {
     public boolean testConnection() {
         return this.createConnection();
     }
-
+    
+    @Override
+    public boolean closeConnection() {
+        try {
+            this.connection.close();
+            return true;
+        } catch (SQLException ex) {
+            Logger.getLogger(OracleDialect.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return false;
+    }
+    
     @Override
     public boolean removeBusinessRule(BusinessRuleModel businessRule) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.

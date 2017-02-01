@@ -36,6 +36,7 @@ public class TableController extends Controller {
             list.add(tableItem);
 
         }
+        serviceProvider.getTargetDatabaseService().closeConnection();
         return list;
     }
 
@@ -49,7 +50,9 @@ public class TableController extends Controller {
         TargetDatabaseService targetDatabaseService = serviceProvider.getTargetDatabaseService();
 
         String tableName = req.params(":tablename");
-        return targetDatabaseService.getColumns(tableName);
+        List<Map> columns = targetDatabaseService.getColumns(tableName);
+        serviceProvider.getTargetDatabaseService().closeConnection();
+        return columns;
     }
 
 }
