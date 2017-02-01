@@ -4,10 +4,14 @@
  */
 package util;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
 public class HibernateUtil {
+
+    private static final Logger logger = LogManager.getLogger(HibernateUtil.class.getName());
 
     private static final SessionFactory sessionFactory;
 
@@ -17,7 +21,8 @@ public class HibernateUtil {
             sessionFactory = new Configuration().configure().buildSessionFactory();
         } catch (Throwable ex) {
             // Make sure you log the exception, as it might be swallowed
-            System.err.println("Initial SessionFactory creation failed." + ex);
+            logger.error("Initial SessionFactory creation failed." + ex);
+
             throw new ExceptionInInitializerError(ex);
         }
     }

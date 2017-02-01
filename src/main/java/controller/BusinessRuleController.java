@@ -4,23 +4,27 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+import model.BusinessRuleModel;
+import model.ProjectModel;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import org.hibernate.Session;
 import spark.Request;
 import spark.Response;
 import template.BusinessRuleParser;
+import util.HibernateUtil;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import model.BusinessRuleModel;
-import model.ProjectModel;
-import org.hibernate.Session;
-import util.HibernateUtil;
 
 /**
  * Created by ismail on 1/25/2017.
  */
 public class BusinessRuleController extends Controller {
+
+    private static final Logger logger = LogManager.getLogger(BusinessRuleController.class.getName());
 
     public static List<Map<String, String>> generateBusinessRule(Request req, Response res) {
         if(
@@ -29,8 +33,7 @@ public class BusinessRuleController extends Controller {
             return new ArrayList();
         }
 
-        System.out.println("Received body:");
-        System.out.println(req.body());
+        logger.debug("Received body:" + req.body());
 
         JsonElement jelement = new JsonParser().parse(req.body());
         JsonObject jobject = jelement.getAsJsonObject();
@@ -71,8 +74,7 @@ public class BusinessRuleController extends Controller {
             return new ArrayList();
         }
 
-        System.out.println("Received body:");
-        System.out.println(req.body());
+        logger.debug("Received body:" + req.body());
 
         JsonElement jelement = new JsonParser().parse(req.body());
         JsonObject jobject = jelement.getAsJsonObject();

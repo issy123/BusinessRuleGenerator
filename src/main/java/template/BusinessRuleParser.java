@@ -1,6 +1,8 @@
 package template;
 
 import model.BusinessRuleModel;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.hibernate.Session;
 import util.HibernateUtil;
 
@@ -12,6 +14,8 @@ import java.util.Map;
  * Created by ismail on 1/22/2017.
  */
 public class BusinessRuleParser {
+
+    private static final Logger logger = LogManager.getLogger(BusinessRuleParser.class.getName());
 
     /**
      * The singleton object.
@@ -46,8 +50,9 @@ public class BusinessRuleParser {
                 return template.parse(rule, openSession);
             }
         }
-        System.out.println("Unsupported business rule type: " + code);
-        Map result = new HashMap();
+        logger.warn("Unsupported business rule type: " + code);
+
+        Map<String, String> result = new HashMap<>();
         result.put("success", "false");
         result.put("message", "Unsupported business rule type: " + code);
         return result;

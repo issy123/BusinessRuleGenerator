@@ -6,6 +6,8 @@
 package controller;
 
 import model.ProjectModel;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.hibernate.Session;
 import service.ServiceProvider;
 import util.HibernateUtil;
@@ -15,6 +17,8 @@ import util.HibernateUtil;
  */
 public abstract class Controller {
 
+    private static final Logger logger = LogManager.getLogger(Controller.class.getName());
+
     public static ServiceProvider serviceProvider = ServiceProvider.getInstance();
 
     static boolean setConnection(long projectId) {
@@ -23,7 +27,7 @@ public abstract class Controller {
         if(project == null){
             return false;
         }
-        System.out.println(project);
+        logger.debug(project);
         serviceProvider.getTargetDatabaseService().setCredentials(
                 project.getDatabaseType(),
                 project.getDatabaseUrl(),

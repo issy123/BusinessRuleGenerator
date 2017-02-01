@@ -5,19 +5,22 @@
  */
 package service.dialect;
 
+import model.BusinessRuleModel;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import model.BusinessRuleModel;
 
 /**
  * @author ismail
  */
 public class MsSqlDialect extends DatabaseDialect {
+
+    private static final Logger logger = LogManager.getLogger(MySqlDialect.class.getName());
 
     Connection connection;
 
@@ -54,7 +57,7 @@ public class MsSqlDialect extends DatabaseDialect {
             }
             return tables;
         } catch (SQLException ex) {
-            Logger.getLogger(MySqlDialect.class.getName()).log(Level.SEVERE, null, ex);
+            logger.error(ex);
         }
         return null;
     }
@@ -79,14 +82,14 @@ public class MsSqlDialect extends DatabaseDialect {
                 }
                 return list;
             } catch (SQLException e) {
-                System.out.println(e.getMessage());
+                logger.error(e);
             } finally {
                 if (stmt != null) {
                     stmt.close();
                 }
             }
         } catch (SQLException ex) {
-            ex.getMessage();
+            logger.error(ex);
         }
         return list;
     }
@@ -117,7 +120,7 @@ public class MsSqlDialect extends DatabaseDialect {
             this.connection.close();
             return true;
         } catch (SQLException ex) {
-            Logger.getLogger(OracleDialect.class.getName()).log(Level.SEVERE, null, ex);
+            logger.error(ex);
         }
         return false;
     }

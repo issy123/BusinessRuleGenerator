@@ -5,19 +5,22 @@
  */
 package service.dialect;
 
+import model.BusinessRuleModel;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import model.BusinessRuleModel;
 
 /**
  * @author ismail
  */
 public class OracleDialect extends DatabaseDialect {
+
+    private static final Logger logger = LogManager.getLogger(OracleDialect.class.getName());
 
     private Connection connection;
 
@@ -33,7 +36,7 @@ public class OracleDialect extends DatabaseDialect {
             this.connection = DriverManager.getConnection(url, this.credentials.get("DATABASE_USERNAME"), this.credentials.get("DATABASE_PASSWORD"));
             return true;
         } catch (ClassNotFoundException | IllegalAccessException | InstantiationException | SQLException | NullPointerException e1) {
-            e1.printStackTrace();
+            logger.error("Failed to create connection ", e1);
         }
         return false;
     }
@@ -45,8 +48,7 @@ public class OracleDialect extends DatabaseDialect {
 
     @Override
     public List<String> getTables() {
-        System.out.println("GETTING TABLES");
-        System.out.println(credentials);
+        logger.debug("GETTING TABLES " + credentials);
         List<String> tables = new ArrayList<>();
         try {
             Statement stmt = null;
@@ -58,14 +60,14 @@ public class OracleDialect extends DatabaseDialect {
                     tables.add(rs.getString("table_name"));
                 }
             } catch (SQLException e) {
-                System.out.println(e.getErrorCode());
+                logger.error(e);
             } finally {
                 if (stmt != null) {
                     stmt.close();
                 }
             }
         } catch (SQLException ex) {
-            ex.getMessage();
+            logger.error(ex);
         }
         return tables;
     }
@@ -90,14 +92,14 @@ public class OracleDialect extends DatabaseDialect {
                 }
                 return list;
             } catch (SQLException e) {
-                System.out.println(e.getMessage());
+                logger.error(e);
             } finally {
                 if (stmt != null) {
                     stmt.close();
                 }
             }
         } catch (SQLException ex) {
-            ex.getMessage();
+            logger.error(ex);
         }
         return list;
     }
@@ -108,9 +110,7 @@ public class OracleDialect extends DatabaseDialect {
             connection.createStatement().execute(businessRule);
             return true;
         } catch (SQLException ex) {
-            ex.printStackTrace();
-            System.out.println(ex.getMessage());
-            Logger.getLogger(OracleDialect.class.getName()).log(Level.SEVERE, null, ex);
+            logger.error(ex);
         }
         return false;
     }
@@ -124,14 +124,14 @@ public class OracleDialect extends DatabaseDialect {
     public boolean testConnection() {
         return this.createConnection();
     }
-    
+
     @Override
     public boolean closeConnection() {
         try {
             this.connection.close();
             return true;
         } catch (SQLException ex) {
-            Logger.getLogger(OracleDialect.class.getName()).log(Level.SEVERE, null, ex);
+            logger.error(ex);
         }
         return false;
     }
@@ -156,7 +156,7 @@ public class OracleDialect extends DatabaseDialect {
              }
              rs.close();
         } catch (SQLException ex) {
-            Logger.getLogger(OracleDialect.class.getName()).log(Level.SEVERE, null, ex);
+            logger.error(ex);
         }
         return false;
     }
@@ -180,7 +180,7 @@ public class OracleDialect extends DatabaseDialect {
             
             return true;
         } catch (SQLException ex) {
-            Logger.getLogger(OracleDialect.class.getName()).log(Level.SEVERE, null, ex);
+            logger.error(ex);
         }
         return false;
     }

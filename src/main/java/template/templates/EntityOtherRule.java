@@ -5,10 +5,11 @@
  */
 package template.templates;
 
-import java.util.Map;
 import model.BusinessRuleModel;
 import org.hibernate.Session;
 import template.Template;
+
+import java.util.Map;
 
 /**
  * @author ismail

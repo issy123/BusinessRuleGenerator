@@ -18,9 +18,7 @@ public class ConnectionController extends Controller {
 
     public static Map<String, String> testConnection(Request req, Response res) {
         Map<String, String> result = new HashMap();
-        if(
-                !setConnection(Long.parseLong(req.params(":project_id")))
-        ){
+        if(!setConnection(Long.parseLong(req.params(":project_id")))){
             result.put("success", "false");
             return result;
         }

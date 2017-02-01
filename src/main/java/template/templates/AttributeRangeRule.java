@@ -7,6 +7,8 @@ package template.templates;
 
 import model.AttributeRangeRuleModel;
 import model.BusinessRuleModel;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.hibernate.Session;
 import service.ServiceProvider;
 import template.Template;
@@ -20,13 +22,15 @@ import java.util.Map;
  */
 public class AttributeRangeRule implements Template {
 
+    private static final Logger logger = LogManager.getLogger(AttributeRangeRule.class.getName());
     @Override
     public Map<String, String> parse(BusinessRuleModel rule, Session session) {
         String template = parseTemplate(rule, session);
-        Map result = new HashMap();
+        Map<String, String> result = new HashMap<>();
         if (template.equals("")) {
-            result.put("success", "true");
+            result.put("success", "false");
             result.put("message", "Failed to parse business rule");
+            logger.warn("Failed to parse business rule: " + rule.getId());
             return result;
         }
         System.out.println(template);
@@ -35,10 +39,12 @@ public class AttributeRangeRule implements Template {
                 .insertBusinessRule(template)) {
             result.put("success", "true");
             result.put("message", "Business rule created");
+            logger.debug("Business rule: " + rule.getId() + " created");
             return result;
         }
         result.put("success", "false");
         result.put("message", "Creating business rule on target database failed");
+        logger.warn("Creating business rule: " + rule.getId() + " on target database failed");
         return result;
     }
 
@@ -48,11 +54,11 @@ public class AttributeRangeRule implements Template {
                 AttributeRangeRuleModel.class,
                 rule.getId()
         );
-        System.out.println("reading file");
+        logger.debug("reading file");
         String template = TemplateReader.getInstance().readFile(
                 rule.getProject().getDatabaseType().toLowerCase() + "/AttributeRangeRule.sql"
         );
-        System.out.println("readed file");
+        logger.debug("read file");
         HashMap<String, String> hmap = new HashMap<>();
         /*Adding elements to HashMap*/
         hmap.put("{error_message}", rule.getErrorMessage());

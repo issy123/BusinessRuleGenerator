@@ -5,25 +5,28 @@
  */
 package template.templates;
 
-import java.util.HashMap;
-import java.util.Map;
-import model.AttributeRangeRuleModel;
 import model.BusinessRuleModel;
 import model.OtherRuleModel;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.hibernate.Session;
 import template.Template;
 import template.TemplateReader;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * @author ismail
  */
 public class AttributeOtherRule implements Template {
-
+    private static final Logger logger = LogManager.getLogger(AttributeOtherRule.class.getName());
     @Override
     public Map<String, String> parse(BusinessRuleModel rule, Session session) {
 
         return null;
     }
+
     public String parseTemplate(BusinessRuleModel rule, Session session) {
         OtherRuleModel otherRule;
         otherRule = (OtherRuleModel) session.get(

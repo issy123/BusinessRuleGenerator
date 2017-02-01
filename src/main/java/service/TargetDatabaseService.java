@@ -5,6 +5,9 @@
  */
 package service;
 
+import model.BusinessRuleModel;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import service.dialect.DatabaseDialect;
 import service.dialect.MsSqlDialect;
 import service.dialect.MySqlDialect;
@@ -14,14 +17,12 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import model.BusinessRuleModel;
 
 /**
  * @author ismail
  */
 public class TargetDatabaseService {
+    private static final Logger logger = LogManager.getLogger(TargetDatabaseService.class.getName());
 
     private final ArrayList<DatabaseDialect> dialects = new ArrayList<>();
     DatabaseDialect dialect;
@@ -42,7 +43,7 @@ public class TargetDatabaseService {
         try {
             this.setDialect(type);
         } catch (Exception ex) {
-            Logger.getLogger(TargetDatabaseService.class.getName()).log(Level.SEVERE, null, ex);
+            logger.error(ex);
         }
         this.dialect.setCredentials(this.credentials);
     }
@@ -58,7 +59,9 @@ public class TargetDatabaseService {
                 return;
             }
         }
-        throw new Exception("Dialect '" + type + "' is not supported");
+        Exception e = new Exception("Dialect '" + type + "' is not supported");
+        logger.error(e);
+        throw e;
     }
 
     public List<String> getTables() {
