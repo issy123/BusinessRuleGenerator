@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Feb 1, 2017 1:00:29 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="model.RoleModel" table="ROLE" schema="TOSAD_2016_2B_TEAM3" optimistic-lock="version">
+        <id name="id" type="long">
+            <column name="ID" precision="10" scale="0" />
+            <generator class="assigned" />
+        </id>
+        <property name="name" type="string">
+            <column name="NAME" length="50" not-null="true" />
+        </property>
+        <set name="users" table="user" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="ROLE_ID" precision="10" scale="0" not-null="true" />
+            </key>
+            <one-to-many class="model.UserModel" />
+        </set>
+    </class>
+</hibernate-mapping>

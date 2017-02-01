@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Feb 1, 2017 1:00:29 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="model.AttributeListRuleModel" table="ATTRIBUTE_LIST_RULE" schema="TOSAD_2016_2B_TEAM3" optimistic-lock="version">
+        <id name="id" type="long">
+            <column name="ID" precision="10" scale="0" />
+            <generator class="assigned" />
+        </id>
+        <property name="listType" type="string">
+            <column name="LIST_TYPE" length="10" not-null="true" />
+        </property>
+        <set name="attributeListRuleItems" table="ATTRIBUTE_LIST_RULE_ITEM" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="ATTRIBUTE_LIST_RULEID" precision="10" scale="0" not-null="true" />
+            </key>
+            <one-to-many class="model.AttributeListRuleItemModel" />
+        </set>
+    </class>
+</hibernate-mapping>

@@ -40,22 +40,23 @@ made subject to such option by the copyright holder.
 Contributor(s):
 -->
 <hibernate-configuration>
-    <session-factory>
-        <property name="hibernate.dialect">org.hibernate.dialect.Oracle10gDialect</property>
-        <property name="hibernate.connection.driver_class">oracle.jdbc.OracleDriver</property>
-        <property name="hibernate.connection.url">jdbc:oracle:thin:@//ondora02.hu.nl:8521/cursus02.hu.nl</property>
-        <property name="hibernate.connection.username">tosad_2016_2b_team3</property>
-        <property name="hibernate.connection.password">tosad_2016_2b_team3</property>
-        <mapping resource="model/Category.hbm.xml"/>
-        <mapping resource="model/OtherRule.hbm.xml"/>
-        <mapping resource="model/User.hbm.xml"/>
-        <mapping resource="model/CompareRule.hbm.xml"/>
-        <mapping resource="model/Project.hbm.xml"/>
-        <mapping resource="model/BusinessRule.hbm.xml"/>
-        <mapping resource="model/BusinessRuleType.hbm.xml"/>
-        <mapping resource="model/AttributeRangeRule.hbm.xml"/>
-        <mapping resource="model/AttributeListRule.hbm.xml"/>
-        <mapping resource="model/AttributeListRuleItem.hbm.xml"/>
-        <mapping resource="model/Role.hbm.xml"/>
-    </session-factory>
+  <session-factory>
+    <property name="hibernate.dialect">org.hibernate.dialect.Oracle10gDialect</property>
+    <property name="hibernate.connection.driver_class">oracle.jdbc.OracleDriver</property>
+    <property name="hibernate.connection.url">jdbc:oracle:thin:@//ondora02.hu.nl:8521/cursus02.hu.nl</property>
+    <property name="hibernate.connection.username">tosad_2016_2b_team3</property>
+    <property name="hibernate.connection.password">tosad_2016_2b_team3</property>
+    <mapping resource="model/AttributeRangeRuleModel.hbm.xml"/>
+    <mapping resource="model/BusinessRuleModel.hbm.xml"/>
+    <mapping resource="model/ProjectModel.hbm.xml"/>
+    <mapping resource="model/UserHasProjectModel.hbm.xml"/>
+    <mapping resource="model/AttributeListRuleModel.hbm.xml"/>
+    <mapping resource="model/UserModel.hbm.xml"/>
+    <mapping resource="model/RoleModel.hbm.xml"/>
+    <mapping resource="model/OtherRuleModel.hbm.xml"/>
+    <mapping resource="model/BusinessRuleTypeModel.hbm.xml"/>
+    <mapping resource="model/CompareRuleModel.hbm.xml"/>
+    <mapping resource="model/AttributeListRuleItemModel.hbm.xml"/>
+    <mapping resource="model/CategoryModel.hbm.xml"/>
+  </session-factory>
 </hibernate-configuration>

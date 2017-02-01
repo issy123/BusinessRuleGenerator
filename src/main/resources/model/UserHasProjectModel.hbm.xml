@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Feb 1, 2017 1:00:29 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="model.UserHasProjectModel" table="USER_HAS_PROJECT" schema="TOSAD_2016_2B_TEAM3" optimistic-lock="version">
+        <composite-id name="id" class="model.UserHasProjectId">
+            <key-property name="projectId" type="long">
+                <column name="PROJECT_ID" precision="10" scale="0" />
+            </key-property>
+            <key-property name="userId" type="long">
+                <column name="USER_ID" precision="10" scale="0" />
+            </key-property>
+        </composite-id>
+        <many-to-one name="project" class="model.ProjectModel" update="false" insert="false" fetch="select">
+            <column name="PROJECT_ID" precision="10" scale="0" not-null="true" />
+        </many-to-one>
+        <many-to-one name="user" class="model.UserModel" update="false" insert="false" fetch="select">
+            <column name="USER_ID" precision="10" scale="0" not-null="true" />
+        </many-to-one>
+        <property name="lvl" type="string">
+            <column name="LVL" length="10" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>
