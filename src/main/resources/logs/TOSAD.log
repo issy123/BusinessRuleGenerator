@@ -74,3 +74,15 @@
 01/Feb/2017 17:00:56,692- Main: Application is launching
 01/Feb/2017 17:00:56,729- Config: Configuring
 01/Feb/2017 17:00:56,736- Config: Configuration complete
+01/Feb/2017 23:13:59,838- Main: Debug mode is enabled
+01/Feb/2017 23:13:59,843- Main: Application is launching
+01/Feb/2017 23:13:59,867- Config: Configuring
+01/Feb/2017 23:13:59,869- Config: Configuration complete
+01/Feb/2017 23:14:33,934- Controller: setting connection project to: Apex db
+01/Feb/2017 23:15:46,436- Controller: setting connection project to: Target db
+01/Feb/2017 23:15:51,724- Controller: setting connection project to: mysql
+01/Feb/2017 23:15:55,523- Controller: setting connection project to: Microsoft dbtje
+01/Feb/2017 23:16:00,232- Controller: setting connection project to: PostGres dbtje
+01/Feb/2017 23:16:00,233- TargetDatabaseService: java.lang.Exception: Dialect 'POSTGRESQL' is not supported
+01/Feb/2017 23:16:00,233- TargetDatabaseService: java.lang.Exception: Dialect 'POSTGRESQL' is not supported
+01/Feb/2017 23:16:49,345- Controller: setting connection project to: Target db
