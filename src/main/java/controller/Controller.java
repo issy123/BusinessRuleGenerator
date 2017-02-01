@@ -27,7 +27,7 @@ public abstract class Controller {
         if(project == null){
             return false;
         }
-        logger.debug(project);
+        logger.debug("setting connection project to: "+ project.getName());
         serviceProvider.getTargetDatabaseService().setCredentials(
                 project.getDatabaseType(),
                 project.getDatabaseUrl(),

@@ -49,9 +49,7 @@ public class BusinessRuleController extends Controller {
     }
     
     public static List<Map<String, String>> generateAllBusinessRules(Request req, Response res) {
-        if(
-                !setConnection(Long.parseLong(req.params(":project_id")))
-        ){
+        if(!setConnection(Long.parseLong(req.params(":project_id")))){
             return new ArrayList();
         }
         Session openSession = HibernateUtil.getSessionFactory().openSession();
