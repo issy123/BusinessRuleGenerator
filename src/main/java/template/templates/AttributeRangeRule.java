@@ -10,43 +10,17 @@ import model.BusinessRuleModel;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.hibernate.Session;
-import service.ServiceProvider;
 import template.Template;
 import template.TemplateReader;
 
 import java.util.HashMap;
-import java.util.Map;
 
 /**
  * @author ismail
  */
-public class AttributeRangeRule implements Template {
+public class AttributeRangeRule extends Template {
 
     private static final Logger logger = LogManager.getLogger(AttributeRangeRule.class.getName());
-    @Override
-    public Map<String, String> parse(BusinessRuleModel rule, Session session) {
-        String template = parseTemplate(rule, session);
-        Map<String, String> result = new HashMap<>();
-        if (template.equals("")) {
-            result.put("success", "false");
-            result.put("message", "Failed to parse business rule");
-            logger.warn("Failed to parse business rule: " + rule.getId());
-            return result;
-        }
-        System.out.println(template);
-        if (ServiceProvider.getInstance()
-                .getTargetDatabaseService()
-                .insertBusinessRule(template)) {
-            result.put("success", "true");
-            result.put("message", "Business rule created");
-            logger.debug("Business rule: " + rule.getId() + " created");
-            return result;
-        }
-        result.put("success", "false");
-        result.put("message", "Creating business rule on target database failed");
-        logger.warn("Creating business rule: " + rule.getId() + " on target database failed");
-        return result;
-    }
 
     public String parseTemplate(BusinessRuleModel rule, Session session) {
         AttributeRangeRuleModel rangeRule;

@@ -14,11 +14,16 @@ import java.util.Map;
 /**
  * @author ismail
  */
-public class EntityOtherRule implements Template {
+public class EntityOtherRule extends Template {
 
     @Override
     public Map<String, String> parse(BusinessRuleModel rule, Session session) {
 
+        return null;
+    }
+
+    @Override
+    public String parseTemplate(BusinessRuleModel rule, Session session) {
         return null;
     }
 

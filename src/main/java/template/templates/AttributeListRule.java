@@ -5,7 +5,6 @@
  */
 package template.templates;
 
-import java.util.Map;
 import model.BusinessRuleModel;
 import org.hibernate.Session;
 import template.Template;
@@ -13,11 +12,11 @@ import template.Template;
 /**
  * @author ismail
  */
-public class AttributeListRule implements Template {
+public class AttributeListRule extends Template {
 
     @Override
-    public Map<String, String> parse(BusinessRuleModel rule, Session session) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public String parseTemplate(BusinessRuleModel rule, Session session) {
+        return null;
     }
 
     @Override

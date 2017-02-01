@@ -5,19 +5,25 @@
  */
 package template.templates;
 
-import java.util.Map;
 import model.BusinessRuleModel;
 import org.hibernate.Session;
 import template.Template;
 
+import java.util.Map;
+
 /**
  * @author ismail
  */
-public class ModifyRule implements Template {
+public class ModifyRule extends Template {
 
     @Override
     public Map<String, String> parse(BusinessRuleModel rule, Session session) {
 
+        return null;
+    }
+
+    @Override
+    public String parseTemplate(BusinessRuleModel rule, Session session) {
         return null;
     }
 

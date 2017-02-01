@@ -5,7 +5,6 @@
  */
 package template.templates;
 
-import java.util.Map;
 import model.BusinessRuleModel;
 import org.hibernate.Session;
 import template.Template;
@@ -13,11 +12,10 @@ import template.Template;
 /**
  * @author ismail
  */
-public class TupleOtherRule implements Template {
+public class TupleOtherRule extends Template {
 
     @Override
-    public Map<String, String> parse(BusinessRuleModel rule, Session session) {
-
+    public String parseTemplate(BusinessRuleModel rule, Session session) {
         return null;
     }
 
