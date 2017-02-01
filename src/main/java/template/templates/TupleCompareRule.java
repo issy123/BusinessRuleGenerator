@@ -25,15 +25,12 @@ public class TupleCompareRule extends Template {
     @Override
     public String parseTemplate(BusinessRuleModel rule, Session session) {
         CompareRuleModel compareRule;
-        compareRule = (CompareRuleModel) session.get(
-                CompareRuleModel.class,
-                rule.getId()
-        );
+        compareRule = (CompareRuleModel) session.get(CompareRuleModel.class, rule.getId());
         String filename = rule.getProject().getDatabaseType().toLowerCase() + "/TupleCompareRule.sql";
 
         logger.debug("reading file: " + filename);
         String template = TemplateReader.getInstance().readFile(filename);
-        logger.debug("read file: " + filename);
+
 
         HashMap<String, String> hmap = new HashMap<>();
         /*Adding elements to HashMap*/
@@ -42,7 +39,7 @@ public class TupleCompareRule extends Template {
         hmap.put("{column_name}", rule.getColumnName());
         hmap.put("{id}", Long.toString(rule.getId()));
         hmap.put("{column_type}", rule.getColumnType());
-        hmap.put("column_name2}", compareRule.getColumnName2());
+        hmap.put("{column_name2}", compareRule.getColumnName2());
         hmap.put("{column_type2}", compareRule.getColumnType2());
         hmap.put("{comparison}", compareRule.getComparison());
 

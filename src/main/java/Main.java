@@ -12,8 +12,9 @@ public class Main {
             logger.debug("Debug mode is enabled");
         }
         logger.info("Application is launching");
-        Router.getInstance().listen();
+
         Config.start();
+        Router.getInstance().listen();
 
     }
 

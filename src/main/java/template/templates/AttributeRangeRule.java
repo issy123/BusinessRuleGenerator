@@ -24,14 +24,10 @@ public class AttributeRangeRule extends Template {
 
     public String parseTemplate(BusinessRuleModel rule, Session session) {
         AttributeRangeRuleModel rangeRule;
-        rangeRule = (AttributeRangeRuleModel) session.get(
-                AttributeRangeRuleModel.class,
-                rule.getId()
-        );
+        rangeRule = (AttributeRangeRuleModel) session.get(AttributeRangeRuleModel.class, rule.getId());
         String filename = rule.getProject().getDatabaseType().toLowerCase() + "/AttributeRangeRule.sql";
         logger.debug("reading file: " + filename);
         String template = TemplateReader.getInstance().readFile(filename);
-        logger.debug("read file: " + filename);
 
         HashMap<String, String> hmap = new HashMap<>();
         /*Adding elements to HashMap*/

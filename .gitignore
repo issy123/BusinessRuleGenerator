@@ -5,6 +5,8 @@
 
 # User-specific stuff:
 .idea/workspace.xml
+*.iml
+src/main/resources/logs/TOSAD.log
 .idea/tasks.xml
 
 # Sensitive or high-churn files:

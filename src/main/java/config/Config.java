@@ -17,7 +17,7 @@ import template.templates.*;
 public class Config {
     private static final Logger logger = LogManager.getLogger(Config.class.getName());
     public static void start() {
-        logger.info("Configuring");
+        logger.debug("Configuring");
         BusinessRuleParser businessRuleParser = BusinessRuleParser.getInstance();
         businessRuleParser.register(new AttributeCompareRule());
         businessRuleParser.register(new AttributeListRule());
@@ -28,6 +28,6 @@ public class Config {
         businessRuleParser.register(new ModifyRule());
         businessRuleParser.register(new TupleCompareRule());
         businessRuleParser.register(new TupleOtherRule());
-        logger.info("Configuration complete");
+        logger.debug("Configuration complete");
     }
 }

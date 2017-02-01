@@ -14,6 +14,7 @@ import template.Template;
 import template.TemplateReader;
 
 import java.util.HashMap;
+import java.util.Map;
 
 /**
  * @author ismail
