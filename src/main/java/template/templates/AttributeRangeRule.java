@@ -28,11 +28,11 @@ public class AttributeRangeRule extends Template {
                 AttributeRangeRuleModel.class,
                 rule.getId()
         );
-        logger.debug("reading file");
-        String template = TemplateReader.getInstance().readFile(
-                rule.getProject().getDatabaseType().toLowerCase() + "/AttributeRangeRule.sql"
-        );
-        logger.debug("read file");
+        String filename = rule.getProject().getDatabaseType().toLowerCase() + "/AttributeRangeRule.sql";
+        logger.debug("reading file: " + filename);
+        String template = TemplateReader.getInstance().readFile(filename);
+        logger.debug("read file: " + filename);
+
         HashMap<String, String> hmap = new HashMap<>();
         /*Adding elements to HashMap*/
         hmap.put("{error_message}", rule.getErrorMessage());
