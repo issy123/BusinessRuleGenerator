@@ -86,8 +86,3 @@
 01/Feb/2017 23:16:00,233- TargetDatabaseService: java.lang.Exception: Dialect 'POSTGRESQL' is not supported
 01/Feb/2017 23:16:00,233- TargetDatabaseService: java.lang.Exception: Dialect 'POSTGRESQL' is not supported
 01/Feb/2017 23:16:49,345- Controller: setting connection project to: Target db
-01/Feb/2017 23:18:06,497- Controller: setting connection project to: Target db
-01/Feb/2017 23:18:47,055- Controller: setting connection project to: Target db
-01/Feb/2017 23:18:47,151- OracleDialect: GETTING TABLES {DATABASE_URL=ondora02.hu.nl:8521/cursus02.hu.nl, DATABASE_NAME=tosad_2016_2b_team3_target, DATABASE_USERNAME=tosad_2016_2b_team3_target, DATABASE_PASSWORD=tosad_2016_2b_team3_target}
-01/Feb/2017 23:18:51,972- Controller: setting connection project to: Apex db
-01/Feb/2017 23:18:52,067- OracleDialect: GETTING TABLES {DATABASE_URL=ondora02.hu.nl:8521/cursus02.hu.nl, DATABASE_NAME=Oracle db target, DATABASE_USERNAME=tosad_2016_2b_team3, DATABASE_PASSWORD=tosad_2016_2b_team3}
