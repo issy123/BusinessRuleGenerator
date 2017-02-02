@@ -113,7 +113,10 @@ public class BusinessRuleModel  implements java.io.Serializable {
         this.active = active;
     }
 
-
+    @Override
+    public String toString() {
+        return "BusinessRuleModel{" + "id=" + id + ", businessRuleType=" + businessRuleType + ", project=" + project + ", name=" + name + ", errorMessage=" + errorMessage + ", tableName=" + tableName + ", columnName=" + columnName + ", columnType=" + columnType + ", createdOn=" + createdOn + ", active=" + active + '}';
+    }
 
 
 }

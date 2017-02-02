@@ -100,6 +100,13 @@ public class CompareRuleModel  implements java.io.Serializable {
     public void setValueType(String valueType) {
         this.valueType = valueType;
     }
+
+    @Override
+    public String toString() {
+        return "CompareRuleModel{" + "id=" + id + ", type=" + type + ", tableName2=" + tableName2 + ", columnName2=" + columnName2 + ", columnType2=" + columnType2 + ", comparison=" + comparison + ", value=" + value + ", valueType=" + valueType + '}';
+    }
+    
+    
 }
 
 

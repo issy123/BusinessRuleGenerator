@@ -54,7 +54,12 @@ public class UserHasProjectIdModel  implements java.io.Serializable {
          return result;
    }   
 
+    @Override
+    public String toString() {
+        return "UserHasProjectIdModel{" + "projectId=" + projectId + ", userId=" + userId + '}';
+    }
 
+   
 }
 
 

@@ -53,8 +53,10 @@ public class OtherRuleModel  implements java.io.Serializable {
         this.insertUpdateDelete = insertUpdateDelete;
     }
 
-
-
+    @Override
+    public String toString() {
+        return "OtherRuleModel{" + "id=" + id + ", sqlCode=" + sqlCode + ", beforeOrAfter=" + beforeOrAfter + ", insertUpdateDelete=" + insertUpdateDelete + '}';
+    }
 
 }
 

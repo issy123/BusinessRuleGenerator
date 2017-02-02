@@ -53,8 +53,10 @@ public class UserHasProjectModel  implements java.io.Serializable {
         this.lvl = lvl;
     }
 
-
-
+    @Override
+    public String toString() {
+        return "UserHasProjectModel{" + "id=" + id + ", project=" + project + ", user=" + user + ", lvl=" + lvl + '}';
+    }
 
 }
 

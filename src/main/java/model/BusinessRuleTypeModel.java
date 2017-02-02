@@ -81,9 +81,13 @@ public class BusinessRuleTypeModel  implements java.io.Serializable {
         this.businessRules = businessRules;
     }
 
+    @Override
+    public String toString() {
+        return "BusinessRuleTypeModel{" + "id=" + id + ", category=" + category + ", code=" + code + ", name=" + name + ", description=" + description + ", businessRules=" + businessRules + '}';
+    }
 
 
-
+    
 }
 
 

@@ -51,7 +51,10 @@ public class RoleModel  implements java.io.Serializable {
         this.users = users;
     }
 
-
+    @Override
+    public String toString() {
+        return "RoleModel{" + "id=" + id + ", name=" + name + ", users=" + users + '}';
+    }
 
 
 }

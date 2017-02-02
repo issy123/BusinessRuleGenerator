@@ -22,7 +22,9 @@ public class TableController extends Controller {
 
     public static List getTables(Request req, Response res) {
         List<Map> list = new ArrayList<>();
-
+        if(!testConnection(req.params(":project_id"))){
+            return list;
+        }
         TargetDatabaseService targetDatabaseService = TargetDatabaseFactory.getInstance()
                                                         .getTargetDatabase(req.params(":project_id"));
         List<String> tables = targetDatabaseService.getTables();
@@ -37,12 +39,15 @@ public class TableController extends Controller {
     }
 
     public static List getColumnsFromTable(Request req, Response res) {
-
+        List<Map> columns = new ArrayList();
+        if(!testConnection(req.params(":project_id"))){
+            return columns;
+        }
         TargetDatabaseService targetDatabaseService = TargetDatabaseFactory.getInstance()
                                                         .getTargetDatabase(req.params(":project_id"));
 
         String tableName = req.params(":tablename");
-        List<Map> columns = targetDatabaseService.getColumns(tableName);
+        columns = targetDatabaseService.getColumns(tableName);
         return columns;
     }
     public static Map getColumnFromTable(Request req, Response res) {

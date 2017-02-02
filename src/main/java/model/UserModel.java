@@ -71,7 +71,10 @@ public class UserModel  implements java.io.Serializable {
         this.userHasProjects = userHasProjects;
     }
 
-
+    @Override
+    public String toString() {
+        return "UserModel{" + "id=" + id + ", role=" + role + ", username=" + username + ", password=" + password + ", userHasProjects=" + userHasProjects + '}';
+    }
 
 
 }

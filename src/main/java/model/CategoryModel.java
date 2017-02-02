@@ -51,7 +51,10 @@ public class CategoryModel  implements java.io.Serializable {
         this.businessRuleTypes = businessRuleTypes;
     }
 
-
+    @Override
+    public String toString() {
+        return "CategoryModel{" + "id=" + id + ", name=" + name + ", businessRuleTypes=" + businessRuleTypes + '}';
+    }
 
 
 }

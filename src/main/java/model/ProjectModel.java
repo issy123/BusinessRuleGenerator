@@ -119,7 +119,10 @@ public class ProjectModel  implements java.io.Serializable {
         this.businessRules = businessRules;
     }
 
-
+    @Override
+    public String toString() {
+        return "ProjectModel{" + "id=" + id + ", databaseUrl=" + databaseUrl + ", databaseUsername=" + databaseUsername + ", databasePassword=" + databasePassword + ", databaseName=" + databaseName + ", databaseType=" + databaseType + ", name=" + name + ", databasePort=" + databasePort + '}';
+    }
 
 
 }

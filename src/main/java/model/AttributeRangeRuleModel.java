@@ -55,7 +55,10 @@ public class AttributeRangeRuleModel  implements java.io.Serializable {
         this.rangeType = rangeType;
     }
 
-
+    @Override
+    public String toString() {
+        return "AttributeRangeRuleModel{" + "id=" + id + ", min=" + min + ", max=" + max + ", rangeType=" + rangeType + '}';
+    }
 
 
 }

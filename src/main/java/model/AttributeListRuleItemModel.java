@@ -39,11 +39,14 @@ public class AttributeListRuleItemModel  implements java.io.Serializable {
     public String getValue() {
         return this.value;
     }
-    
     public void setValue(String value) {
         this.value = value;
     }
 
+    @Override
+    public String toString() {
+        return "AttributeListRuleItemModel{" + "id=" + id + ", attributeListRule=" + attributeListRule + ", value=" + value + '}';
+    }
 
 
 

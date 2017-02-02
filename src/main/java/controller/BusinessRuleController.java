@@ -31,11 +31,14 @@ public class BusinessRuleController extends Controller {
     private static final Logger logger = LogManager.getLogger(BusinessRuleController.class.getName());
 
     public static List<Map<String, String>> generateBusinessRules(Request req, Response res) {
+        List<Map<String, String>> results = new ArrayList();
+        if(!testConnection(req.params(":project_id"))){
+            return results;
+        }
         String rules = req.params(":rules");
         logger.debug("Received rules:" + rules);
         List<String> seperatedRules = Arrays.asList(rules.split(","));
         BusinessRuleParser parser = BusinessRuleParser.getInstance();
-        List<Map<String, String>> results = new ArrayList();
         seperatedRules.forEach((rule) -> {
             System.out.println("rule:" + rule);
             results.add(parser.parse(Long.parseLong(rule)));
@@ -44,11 +47,14 @@ public class BusinessRuleController extends Controller {
     }
     
     public static List<Map<String, String>> generateAllBusinessRules(Request req, Response res) {
+        List<Map<String, String>> results = new ArrayList();
+        if(!testConnection(req.params(":project_id"))){
+            return results;
+        }
         Session openSession = HibernateUtil.getSessionFactory().openSession();
         ProjectModel project = (ProjectModel) openSession.get(ProjectModel.class, req.params(":project_id"));
         Set businessRules = project.getBusinessRules();
         BusinessRuleParser parser = BusinessRuleParser.getInstance();
-        List<Map<String, String>> results = new ArrayList();
         for(Object businessRule : businessRules){
             BusinessRuleModel currentBusinessRule = (BusinessRuleModel) businessRule;
             results.add(parser.parse(currentBusinessRule.getId()));
@@ -57,11 +63,13 @@ public class BusinessRuleController extends Controller {
     }
     
     public static List<Map<String, String>> removeBusinessRule(Request req, Response res) {
-
+        List<Map<String, String>> results = new ArrayList();
+        if(!testConnection(req.params(":project_id"))){
+            return results;
+        }
         String rules = req.params(":rules");
         logger.debug("Received rules:" + rules);
         List<String> seperatedRules = Arrays.asList(rules.split(","));
-        List<Map<String, String>> results = new ArrayList();
         seperatedRules.forEach((rule) -> {
             System.out.println("rule:" + rule);
             Session openSession = HibernateUtil.getSessionFactory().openSession();
@@ -78,10 +86,13 @@ public class BusinessRuleController extends Controller {
     }
     
     public static List<Map<String, String>> removeAllBusinessRules(Request req, Response res) {
+        List<Map<String, String>> results = new ArrayList();
+        if(!testConnection(req.params(":project_id"))){
+            return results;
+        }
         Session openSession = HibernateUtil.getSessionFactory().openSession();
         ProjectModel project = (ProjectModel) openSession.get(ProjectModel.class, req.params(":project_id"));
         Set businessRules = project.getBusinessRules();
-        List<Map<String, String>> results = new ArrayList();
         for(Object businessRule : businessRules){
             BusinessRuleModel currentBusinessRule = (BusinessRuleModel) businessRule;
             TargetDatabaseService targetDatabase = TargetDatabaseFactory.getInstance()

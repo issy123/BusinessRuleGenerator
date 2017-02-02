@@ -51,7 +51,10 @@ public class AttributeListRuleModel  implements java.io.Serializable {
         this.attributeListRuleItems = attributeListRuleItems;
     }
 
-
+    @Override
+    public String toString() {
+        return "AttributeListRuleModel{" + "id=" + id + ", listType=" + listType + ", attributeListRuleItems=" + attributeListRuleItems + '}';
+    }
 
 
 }
