@@ -72,8 +72,13 @@ public class BusinessRuleModel  implements java.io.Serializable {
     public void setErrorMessage(String errorMessage) {
         this.errorMessage = errorMessage;
     }
+    
     public String getTableName() {
         return this.tableName;
+    }
+    
+    public String getSmallTableName() {
+        return this.tableName.substring(10);
     }
     
     public void setTableName(String tableName) {

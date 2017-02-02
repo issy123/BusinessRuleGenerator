@@ -10,6 +10,8 @@ import spark.Response;
 
 import java.util.HashMap;
 import java.util.Map;
+import service.TargetDatabaseFactory;
+import service.TargetDatabaseService;
 
 /**
  * @author ismail
@@ -18,11 +20,14 @@ public class ConnectionController extends Controller {
 
     public static Map<String, String> testConnection(Request req, Response res) {
         Map<String, String> result = new HashMap();
-        if(!setConnection(Long.parseLong(req.params(":project_id")))){
+        
+        TargetDatabaseService targetDatabaseService = TargetDatabaseFactory.getInstance()
+                                                        .getTargetDatabase(req.params(":project_id"));
+        if(!targetDatabaseService.testConnection()){
             result.put("success", "false");
             return result;
         }
-        result.put("success", String.valueOf(serviceProvider.getTargetDatabaseService().testConnection()));
+        
         return result;
     }
 }

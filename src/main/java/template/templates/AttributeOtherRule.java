@@ -30,22 +30,18 @@ public class AttributeOtherRule extends Template {
                 rule.getId()
         );
         System.out.println("reading file");
-        String template;
-//        if(rangeRule.get){
-            template = TemplateReader.getInstance().readFile(
+        String template = TemplateReader.getInstance().readFile(
                 rule.getProject().getDatabaseType().toLowerCase() + "/AttributeOtherRule.sql"
             );
-            
-//        }
         System.out.println("readed file");
         HashMap<String, String> hmap = new HashMap<>();
         /*Adding elements to HashMap*/
+        hmap.put("{id}", String.valueOf(rule.getId()));
         hmap.put("{error_message}", rule.getErrorMessage());
         hmap.put("{table_name}", rule.getTableName());
-        hmap.put("{column_name}", rule.getColumnName());
-//        hmap.put("{range_type}", otherRule.getRangeType());
-//        hmap.put("{min}", otherRule.getMin());
-//        hmap.put("{max}", otherRule.getMax());
+        hmap.put("{event}", otherRule.getBeforeOrAfter());
+        hmap.put("{action}", otherRule.getInsertUpdateDelete());
+        hmap.put("{sql_code}", otherRule.getSqlCode());
 
         String parsedTemplate;
         for (HashMap.Entry<String, String> placeholder : hmap.entrySet()) {

@@ -42,5 +42,5 @@ public abstract class DatabaseDialect {
 
     public abstract boolean removeBusinessRule(BusinessRuleModel businessRule);
 
-    public abstract ArrayList<String> getBusinessRules();
+    public abstract List<String> getBusinessRules();
 }

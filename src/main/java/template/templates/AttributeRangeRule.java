@@ -22,6 +22,7 @@ public class AttributeRangeRule extends Template {
 
     private static final Logger logger = LogManager.getLogger(AttributeRangeRule.class.getName());
 
+    @Override
     public String parseTemplate(BusinessRuleModel rule, Session session) {
         AttributeRangeRuleModel rangeRule;
         rangeRule = (AttributeRangeRuleModel) session.get(AttributeRangeRuleModel.class, rule.getId());
@@ -31,6 +32,7 @@ public class AttributeRangeRule extends Template {
 
         HashMap<String, String> hmap = new HashMap<>();
         /*Adding elements to HashMap*/
+        hmap.put("{id}", String.valueOf(rule.getId()));
         hmap.put("{error_message}", rule.getErrorMessage());
         hmap.put("{table_name}", rule.getTableName());
         hmap.put("{column_name}", rule.getColumnName());

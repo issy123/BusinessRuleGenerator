@@ -1,4 +1,4 @@
-CREATE OR REPLACE TRIGGER BRG_ICMP_{table_name}_TRG
+CREATE OR REPLACE TRIGGER BRG_ICMP_{table_name}_{id}_TRG
     BEFORE INSERT OR UPDATE
     ON {table_name}
     FOR EACH ROW
@@ -13,7 +13,7 @@ BEGIN
     SELECT {column_name2}
     INTO v_column2
     FROM {table_name2}
-    WHERE MIN({column_name2});
+    WHERE MAX(rowid);
 
     IF (v_column1 {comparison} v_column2) THEN
         l_passed := TRUE;

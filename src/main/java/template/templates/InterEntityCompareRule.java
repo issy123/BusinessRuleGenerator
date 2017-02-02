@@ -32,7 +32,7 @@ public class InterEntityCompareRule extends Template {
         logger.debug("reading file: " + filename);
         String template = TemplateReader.getInstance().readFile(filename);
 
-        HashMap<String, String> hmap = new HashMap<>();
+        Map<String, String> hmap = new HashMap<>();
         /*Adding elements to HashMap*/
         hmap.put("{error_message}", rule.getErrorMessage());
         hmap.put("{table_name}", rule.getTableName());

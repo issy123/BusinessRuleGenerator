@@ -8,6 +8,7 @@ import util.HibernateUtil;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -25,7 +26,7 @@ public class BusinessRuleParser {
     /**
      * A list of commands.
      */
-    private final ArrayList<Template> templates = new ArrayList<>();
+    private final List<Template> templates = new ArrayList<>();
 
     private BusinessRuleParser() {
         /*
@@ -45,6 +46,7 @@ public class BusinessRuleParser {
         Session openSession = HibernateUtil.getSessionFactory().openSession();
         BusinessRuleModel rule = (BusinessRuleModel) openSession.get(BusinessRuleModel.class, businessRuleId);
         String code = rule.getBusinessRuleType().getCode();
+        System.out.println(businessRuleId);
         for (Template template : templates) {
             if (template.code().equals(code)) {
                 return template.parse(rule, openSession);

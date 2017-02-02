@@ -24,7 +24,7 @@ import java.util.Map;
 public class TargetDatabaseService {
     private static final Logger logger = LogManager.getLogger(TargetDatabaseService.class.getName());
 
-    private final ArrayList<DatabaseDialect> dialects = new ArrayList<>();
+    private final List<DatabaseDialect> dialects = new ArrayList<>();
     DatabaseDialect dialect;
     Map<String, String> credentials = new HashMap();
 

@@ -9,10 +9,10 @@ import model.BusinessRuleModel;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.hibernate.Session;
-import service.ServiceProvider;
 
 import java.util.HashMap;
 import java.util.Map;
+import service.TargetDatabaseFactory;
 
 /**
  * @author ismail
@@ -31,8 +31,10 @@ public abstract class Template {
             return result;
         }
         System.out.println(template);
-        if (ServiceProvider.getInstance()
-                .getTargetDatabaseService()
+        System.out.println("PROJECTID");
+        System.out.println(String.valueOf(rule.getProject().getId()));
+        System.out.println("PROJECTID");
+        if (TargetDatabaseFactory.getInstance().getTargetDatabase(String.valueOf(rule.getProject().getId()))
                 .insertBusinessRule(template)) {
             result.put("success", "true");
             result.put("message", "Business rule created");

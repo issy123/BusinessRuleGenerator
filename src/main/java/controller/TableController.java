@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import service.TargetDatabaseFactory;
 
 /**
  * @author ismail
@@ -20,14 +21,10 @@ import java.util.Map;
 public class TableController extends Controller {
 
     public static List getTables(Request req, Response res) {
-        if(
-                !setConnection(Long.parseLong(req.params(":project_id")))
-        ){
-            return new ArrayList();
-        }
         List<Map> list = new ArrayList<>();
 
-        TargetDatabaseService targetDatabaseService = serviceProvider.getTargetDatabaseService();
+        TargetDatabaseService targetDatabaseService = TargetDatabaseFactory.getInstance()
+                                                        .getTargetDatabase(req.params(":project_id"));
         List<String> tables = targetDatabaseService.getTables();
         for (String table : tables) {
             Map<String, String> tableItem = new HashMap<>();
@@ -36,23 +33,32 @@ public class TableController extends Controller {
             list.add(tableItem);
 
         }
-        serviceProvider.getTargetDatabaseService().closeConnection();
         return list;
     }
 
     public static List getColumnsFromTable(Request req, Response res) {
-        if(
-                !setConnection(Long.parseLong(req.params(":project_id")))
-        ){
-            return new ArrayList();
-        }
 
-        TargetDatabaseService targetDatabaseService = serviceProvider.getTargetDatabaseService();
+        TargetDatabaseService targetDatabaseService = TargetDatabaseFactory.getInstance()
+                                                        .getTargetDatabase(req.params(":project_id"));
 
         String tableName = req.params(":tablename");
         List<Map> columns = targetDatabaseService.getColumns(tableName);
-        serviceProvider.getTargetDatabaseService().closeConnection();
         return columns;
+    }
+    public static Map getColumnFromTable(Request req, Response res) {
+
+        TargetDatabaseService targetDatabaseService = TargetDatabaseFactory.getInstance()
+                                                        .getTargetDatabase(req.params(":project_id"));
+
+        String tableName = req.params(":tablename");
+        List<Map> columns = targetDatabaseService.getColumns(tableName);
+        for(Map column : columns){
+            if (column.get("column_name").equals(req.params(":column_name"))){
+                return column;
+            }
+            
+        }
+        return new HashMap();
     }
 
 }
