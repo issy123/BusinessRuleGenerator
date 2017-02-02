@@ -26,8 +26,6 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="Hibernate 5.2.3-5.2.3" level="project" />
     <orderEntry type="library" name="ojdbc71" level="project" />
-    <orderEntry type="library" name="Maven: org.apache.logging.log4j:log4j-api:2.8" level="project" />
-    <orderEntry type="library" name="Maven: org.apache.logging.log4j:log4j-core:2.8" level="project" />
     <orderEntry type="library" name="ojdbc7" level="project" />
     <orderEntry type="library" name="Maven: com.sparkjava:spark-core:2.0.0" level="project" />
     <orderEntry type="library" name="Maven: org.slf4j:slf4j-api:1.7.2" level="project" />
@@ -44,7 +42,6 @@
     <orderEntry type="library" name="Maven: com.google.code.gson:gson:2.2.4" level="project" />
     <orderEntry type="library" name="Maven: junit:junit:4.11" level="project" />
     <orderEntry type="library" name="Maven: org.hamcrest:hamcrest-core:1.3" level="project" />
-    <orderEntry type="library" name="Maven: com.oracle.jdbc:ojdbc7:12.1.0.2" level="project" />
     <orderEntry type="library" name="Maven: org.hibernate:hibernate-entitymanager:4.3.1.Final" level="project" />
     <orderEntry type="library" name="Maven: org.jboss.logging:jboss-logging:3.1.3.GA" level="project" />
     <orderEntry type="library" name="Maven: org.jboss.logging:jboss-logging-annotations:1.2.0.Beta1" level="project" />

@@ -14,8 +14,7 @@ public class AttributeRangeRuleModel  implements java.io.Serializable {
      private String max;
      private String rangeType;
 
-    public AttributeRangeRuleModel() {
-    }
+    public AttributeRangeRuleModel() {}
 
     public AttributeRangeRuleModel(long id, String min, String max, String rangeType) {
        this.id = id;
@@ -31,6 +30,7 @@ public class AttributeRangeRuleModel  implements java.io.Serializable {
     public void setId(long id) {
         this.id = id;
     }
+
     public String getMin() {
         return this.min;
     }
@@ -38,6 +38,7 @@ public class AttributeRangeRuleModel  implements java.io.Serializable {
     public void setMin(String min) {
         this.min = min;
     }
+
     public String getMax() {
         return this.max;
     }
@@ -45,6 +46,7 @@ public class AttributeRangeRuleModel  implements java.io.Serializable {
     public void setMax(String max) {
         this.max = max;
     }
+
     public String getRangeType() {
         return this.rangeType;
     }

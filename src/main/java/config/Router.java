@@ -8,6 +8,8 @@ package config;
 import controller.BusinessRuleController;
 import controller.TableController;
 import controller.ConnectionController;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import static spark.Spark.*;
 import static util.JsonUtil.json;
@@ -16,8 +18,8 @@ import static util.JsonUtil.json;
  * @author ismail
  */
 public class Router {
-
     private static final Router instance = new Router();
+    private static final Logger logger = LogManager.getLogger(Router.class.getName());
 
     private Router() {
     }
@@ -27,6 +29,7 @@ public class Router {
     }
 
     public void listen() {
+        logger.debug("Listening");
         before((request, response) -> response.type("application/json"));
         get("/:project_id/tables", TableController::getTables, json());
         get("/:project_id/test_connection", ConnectionController::testConnection, json());

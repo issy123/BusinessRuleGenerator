@@ -1,0 +1,88 @@
+01/Feb/2017 14:00:16,994- logger: Application is launching
+01/Feb/2017 14:00:17,033- logger: Configuring
+01/Feb/2017 14:00:17,055- logger: Configuration complete
+01/Feb/2017 14:01:43,108- Main: Application is launching
+01/Feb/2017 14:01:43,176- Config: Configuring
+01/Feb/2017 14:01:43,182- Config: Configuration complete
+01/Feb/2017 14:07:09,012- Main: Application is launching
+01/Feb/2017 14:07:09,087- Config: Configuring
+01/Feb/2017 14:07:09,092- Config: Configuration complete
+01/Feb/2017 14:35:31,302- Main: Application is launching
+01/Feb/2017 14:35:31,340- Config: Configuring
+01/Feb/2017 14:35:31,344- Config: Configuration complete
+01/Feb/2017 14:46:18,395- Main: Application is launching
+01/Feb/2017 14:46:18,457- Config: Configuring
+01/Feb/2017 14:46:18,488- Config: Configuration complete
+01/Feb/2017 15:13:15,860- Main: Application is launching
+01/Feb/2017 15:13:15,921- Config: Configuring
+01/Feb/2017 15:13:15,964- Config: Configuration complete
+01/Feb/2017 15:15:19,546- Main: Application is launching
+01/Feb/2017 15:15:19,588- Config: Configuring
+01/Feb/2017 15:15:19,595- Config: Configuration complete
+01/Feb/2017 15:16:07,748- Controller: ProjectModel{id=1, databaseUrl=ondora02.hu.nl:8521/cursus02.hu.nl, databaseUsername=tosad_2016_2b_team3, databasePassword=tosad_2016_2b_team3, databaseType=ORACLE, databaseName=Oracle db target}
+01/Feb/2017 15:18:12,433- Main: Application is launching
+01/Feb/2017 15:18:12,478- Config: Configuring
+01/Feb/2017 15:18:12,484- Config: Configuration complete
+01/Feb/2017 15:20:20,900- Main: Application is launching
+01/Feb/2017 15:20:20,949- Config: Configuring
+01/Feb/2017 15:20:20,955- Config: Configuration complete
+01/Feb/2017 15:20:25,926- Controller: ProjectModel{id=1, databaseUrl=ondora02.hu.nl:8521/cursus02.hu.nl, databaseUsername=tosad_2016_2b_team3, databasePassword=tosad_2016_2b_team3, databaseType=ORACLE, databaseName=Oracle db target}
+01/Feb/2017 16:09:30,090- Main: Application is launching
+01/Feb/2017 16:09:30,160- Config: Configuring
+01/Feb/2017 16:09:30,169- Config: Configuration complete
+01/Feb/2017 16:12:16,376- Main: Application is launching
+01/Feb/2017 16:12:16,447- Config: Configuring
+01/Feb/2017 16:12:16,453- Config: Configuration complete
+01/Feb/2017 16:13:43,896- Main: Application is launching
+01/Feb/2017 16:13:43,967- Config: Configuring
+01/Feb/2017 16:13:43,972- Config: Configuration complete
+01/Feb/2017 16:14:48,640- Main: Application is launching
+01/Feb/2017 16:14:48,646- Main: Debug mode is enabled
+01/Feb/2017 16:14:48,646- Main: Application is launching
+01/Feb/2017 16:14:48,718- Config: Configuring
+01/Feb/2017 16:14:48,725- Config: Configuration complete
+01/Feb/2017 16:15:13,512- Main: Application is launching
+01/Feb/2017 16:15:13,524- Main: Debug mode is enabled
+01/Feb/2017 16:15:13,525- Main: Application is launching
+01/Feb/2017 16:15:13,578- Config: Configuring
+01/Feb/2017 16:15:13,584- Config: Configuration complete
+01/Feb/2017 16:35:00,699- Main: Debug mode is enabled
+01/Feb/2017 16:35:00,703- Main: Application is launching
+01/Feb/2017 16:35:00,739- Config: Configuring
+01/Feb/2017 16:35:00,745- Config: Configuration complete
+01/Feb/2017 16:35:26,142- HibernateUtil: Initial SessionFactory creation failed.org.hibernate.HibernateException: Unable to instantiate default tuplizer [org.hibernate.tuple.component.PojoComponentTuplizer]
+01/Feb/2017 16:40:56,383- Main: Debug mode is enabled
+01/Feb/2017 16:40:56,390- Main: Application is launching
+01/Feb/2017 16:40:56,451- Config: Configuring
+01/Feb/2017 16:40:56,459- Config: Configuration complete
+01/Feb/2017 16:41:02,480- HibernateUtil: Initial SessionFactory creation failed.org.hibernate.HibernateException: Unable to instantiate default tuplizer [org.hibernate.tuple.component.PojoComponentTuplizer]
+01/Feb/2017 16:57:23,044- Main: Debug mode is enabled
+01/Feb/2017 16:57:23,050- Main: Application is launching
+01/Feb/2017 16:57:23,097- Config: Configuring
+01/Feb/2017 16:57:23,106- Config: Configuration complete
+01/Feb/2017 16:57:35,121- Controller: model.ProjectModel@4d75ac65
+01/Feb/2017 16:58:31,988- Main: Debug mode is enabled
+01/Feb/2017 16:58:31,992- Main: Application is launching
+01/Feb/2017 16:58:32,025- Config: Configuring
+01/Feb/2017 16:58:32,033- Config: Configuration complete
+01/Feb/2017 16:58:37,002- Controller: setting connection project to: Apex db
+01/Feb/2017 16:59:14,704- Controller: setting connection project to: Apex db
+01/Feb/2017 17:00:01,797- Controller: setting connection project to: Apex db
+01/Feb/2017 17:00:23,359- Controller: setting connection project to: Apex db
+01/Feb/2017 17:00:23,414- OracleDialect: GETTING TABLES {DATABASE_URL=ondora02.hu.nl:8521/cursus02.hu.nl, DATABASE_NAME=Oracle db target, DATABASE_USERNAME=tosad_2016_2b_team3, DATABASE_PASSWORD=tosad_2016_2b_team3}
+01/Feb/2017 17:00:56,685- Main: Debug mode is enabled
+01/Feb/2017 17:00:56,692- Main: Application is launching
+01/Feb/2017 17:00:56,729- Config: Configuring
+01/Feb/2017 17:00:56,736- Config: Configuration complete
+01/Feb/2017 23:13:59,838- Main: Debug mode is enabled
+01/Feb/2017 23:13:59,843- Main: Application is launching
+01/Feb/2017 23:13:59,867- Config: Configuring
+01/Feb/2017 23:13:59,869- Config: Configuration complete
+01/Feb/2017 23:14:33,934- Controller: setting connection project to: Apex db
+01/Feb/2017 23:15:46,436- Controller: setting connection project to: Target db
+01/Feb/2017 23:15:51,724- Controller: setting connection project to: mysql
+01/Feb/2017 23:15:55,523- Controller: setting connection project to: Microsoft dbtje
+01/Feb/2017 23:16:00,232- Controller: setting connection project to: PostGres dbtje
+01/Feb/2017 23:16:00,233- TargetDatabaseService: java.lang.Exception: Dialect 'POSTGRESQL' is not supported
+01/Feb/2017 23:16:00,233- TargetDatabaseService: java.lang.Exception: Dialect 'POSTGRESQL' is not supported
+01/Feb/2017 23:16:49,345- Controller: setting connection project to: Target db

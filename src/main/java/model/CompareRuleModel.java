@@ -45,6 +45,7 @@ public class CompareRuleModel  implements java.io.Serializable {
     public void setId(long id) {
         this.id = id;
     }
+
     public String getType() {
         return this.type;
     }
@@ -52,6 +53,7 @@ public class CompareRuleModel  implements java.io.Serializable {
     public void setType(String type) {
         this.type = type;
     }
+
     public String getTableName2() {
         return this.tableName2;
     }
@@ -59,6 +61,7 @@ public class CompareRuleModel  implements java.io.Serializable {
     public void setTableName2(String tableName2) {
         this.tableName2 = tableName2;
     }
+
     public String getColumnName2() {
         return this.columnName2;
     }
@@ -73,6 +76,7 @@ public class CompareRuleModel  implements java.io.Serializable {
     public void setColumnType2(String columnType2) {
         this.columnType2 = columnType2;
     }
+
     public String getComparison() {
         return this.comparison;
     }
@@ -80,6 +84,7 @@ public class CompareRuleModel  implements java.io.Serializable {
     public void setComparison(String comparison) {
         this.comparison = comparison;
     }
+
     public String getValue() {
         return this.value;
     }
@@ -87,6 +92,7 @@ public class CompareRuleModel  implements java.io.Serializable {
     public void setValue(String value) {
         this.value = value;
     }
+
     public String getValueType() {
         return this.valueType;
     }
@@ -94,10 +100,6 @@ public class CompareRuleModel  implements java.io.Serializable {
     public void setValueType(String valueType) {
         this.valueType = valueType;
     }
-
-
-
-
 }
 
 

@@ -8,9 +8,13 @@ public class Main {
     private static final Logger logger = LogManager.getLogger(Main.class.getName());
 
     public static void main(String[] args) {
+        if(logger.isDebugEnabled()){
+            logger.debug("Debug mode is enabled");
+        }
         logger.info("Application is launching");
-        Router.getInstance().listen();
+
         Config.start();
+        Router.getInstance().listen();
 
     }
 

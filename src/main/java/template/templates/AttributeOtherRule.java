@@ -19,13 +19,9 @@ import java.util.Map;
 /**
  * @author ismail
  */
-public class AttributeOtherRule implements Template {
-    private static final Logger logger = LogManager.getLogger(AttributeOtherRule.class.getName());
-    @Override
-    public Map<String, String> parse(BusinessRuleModel rule, Session session) {
+public class AttributeOtherRule extends Template {
 
-        return null;
-    }
+    private static final Logger logger = LogManager.getLogger(AttributeOtherRule.class.getName());
 
     public String parseTemplate(BusinessRuleModel rule, Session session) {
         OtherRuleModel otherRule;

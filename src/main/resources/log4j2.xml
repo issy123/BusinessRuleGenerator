@@ -4,23 +4,39 @@
         <Property name="log-path">src/main/resources/logs/</Property>
     </Properties>
     <Appenders>
-        <RollingFile name="RollingFile" fileName="${log-path}/TOSAD.log"
-                     filePattern="${log-path}/TOSAD-%d{yyyy-MM-dd HH mm ss}.log">
+        <RollingFile>
+            <name>RollingFile</name>
+            <fileName>${log-path}/TOSAD.log</fileName>
+            <filePattern>${log-path}/TOSAD-%d{yyyy-MM-dd HH mm ss}.log</filePattern>
             <PatternLayout>
                 <pattern>%d{dd/MMM/yyyy HH:mm:ss,SSS}- %c{1}: %m%n</pattern>
             </PatternLayout>
             <Policies>
-                <SizeBasedTriggeringPolicy size="4 MB"/>
+                <SizeBasedTriggeringPolicy>
+                    <size>4 MB</size>
+                </SizeBasedTriggeringPolicy>
             </Policies>
-            <DefaultRolloverStrategy max="1"/>
+            <DefaultRolloverStrategy>
+                <max>1</max>
+            </DefaultRolloverStrategy>
         </RollingFile>
     </Appenders>
     <Loggers>
-        <Logger name="root" level="debug" additivity="false">
-            <appender-ref ref="RollingFile" level="debug"/>
+        <Logger>
+            <name>root</name>
+            <level>debug</level>
+            <additivity>false</additivity>
+            <appender-ref>
+                <ref>RollingFile</ref>
+                <level>debug</level>
+            </appender-ref>
         </Logger>
-        <Root level="debug" additivity="false">
-            <AppenderRef ref="RollingFile"/>
+        <Root>
+            <level>debug</level>
+            <additivity>false</additivity>
+            <AppenderRef>
+                <ref>RollingFile</ref>
+            </AppenderRef>
         </Root>
     </Loggers>
 </Configuration>
