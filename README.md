@@ -1,5 +1,4 @@
-Spark web API example
+Business rule generator
 =============
-Example project for my Blog post [Building a simple RESTful API with Spark][1].
 
-[1]: http://www.mscharhag.com/2014/06/building-simple-restful-api-with-spark.html
+##An advanced business rule generator for Oracle SQL, MySQL and Microsoft SQL
