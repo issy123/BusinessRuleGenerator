@@ -92,7 +92,13 @@ public class MySqlDialect extends DatabaseDialect {
 
     @Override
     public boolean insertBusinessRule(String businessRule) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try {
+            connection.createStatement().execute(businessRule);
+            return true;
+        } catch (SQLException ex) {
+            logger.error(ex);
+        }
+        return false;
     }
 
     @Override

@@ -38,7 +38,7 @@ public class TableController extends Controller {
         return list;
     }
 
-    public static List getColumnsFromTable(Request req, Response res) {
+    public static List<Map> getColumnsFromTable(Request req, Response res) {
         List<Map> columns = new ArrayList();
         if(!testConnection(req.params(":project_id"))){
             return columns;
@@ -50,20 +50,23 @@ public class TableController extends Controller {
         columns = targetDatabaseService.getColumns(tableName);
         return columns;
     }
-    public static Map getColumnFromTable(Request req, Response res) {
+    public static List<Map> getColumnFromTable(Request req, Response res) {
 
         TargetDatabaseService targetDatabaseService = TargetDatabaseFactory.getInstance()
                                                         .getTargetDatabase(req.params(":project_id"));
 
         String tableName = req.params(":tablename");
         List<Map> columns = targetDatabaseService.getColumns(tableName);
+        List<Map> result = new ArrayList();
         for(Map column : columns){
             if (column.get("column_name").equals(req.params(":column_name"))){
-                return column;
+                result.add(column);
+                return result;
             }
             
         }
-        return new HashMap();
+        result.add(new HashMap());
+        return result;
     }
 
 }

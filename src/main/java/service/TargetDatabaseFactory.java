@@ -31,15 +31,6 @@ public class TargetDatabaseFactory {
         TargetDatabaseService targetDatabase = new TargetDatabaseService();
         Session openSession = HibernateUtil.getSessionFactory().openSession();
         ProjectModel project = (ProjectModel) openSession.get(ProjectModel.class, Long.parseLong(projectId));
-        System.out.println("FOUND");
-        System.out.println(project);
-        System.out.println("OK");
-        System.out.println(project.getDatabaseType());
-        System.out.println(project.getDatabaseUrl());
-        System.out.println(project.getDatabaseName());
-        System.out.println(project.getDatabaseUsername());
-        System.out.println(project.getDatabasePassword());
-        System.out.println("OK2");
         targetDatabase.setCredentials(
                 project.getDatabaseType(),
                 project.getDatabaseUrl(),

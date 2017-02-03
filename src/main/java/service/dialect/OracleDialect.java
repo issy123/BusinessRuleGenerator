@@ -37,6 +37,8 @@ public class OracleDialect extends DatabaseDialect {
             return true;
         } catch (ClassNotFoundException | IllegalAccessException | InstantiationException | SQLException | NullPointerException e1) {
             logger.error("Failed to create connection ", e1);
+            System.out.println("failed connection... retrying...");
+            this.createConnection();
         }
         return false;
     }
@@ -111,6 +113,7 @@ public class OracleDialect extends DatabaseDialect {
             return true;
         } catch (SQLException ex) {
             logger.error(ex);
+            ex.printStackTrace();
         }
         return false;
     }
@@ -140,11 +143,11 @@ public class OracleDialect extends DatabaseDialect {
     public boolean removeBusinessRule(BusinessRuleModel businessRule) {
         try {
             Statement stmt = connection.createStatement();
+            String query = "SELECT TRIGGER_NAME FROM USER_TRIGGERS " +
+                "WHERE TABLE_OWNER = '" + credentials.get("DATABASE_NAME") + "' AND " +
+                    "TRIGGER_NAME = '" + "BRG_" + businessRule.getBusinessRuleType().getCode() + "_" + businessRule.getId() + "_TRG" + "'";
             ResultSet rs = stmt.executeQuery(
-                "SELECT * FROM USER_TRIGGERS " +
-                "WHERE TABLE_OWNER = '" + credentials.get("DATABASE_NAME") + "' AND" +
-                "TRIGGER_NAME = 'BRG_" + businessRule.getBusinessRuleType().getCode() + "_" + businessRule.getTableName() + "_" + businessRule.getId() + "_TRG'" +
-                        ""
+                query
             );
             while(rs.next()){
                 //Retrieve by column name
@@ -152,7 +155,9 @@ public class OracleDialect extends DatabaseDialect {
 
                 //Display values
                 System.out.print("TRIGGER_NAME: " + triggerName);
-                return this.dropTrigger(triggerName);
+                if(triggerName.equals("BRG_" + businessRule.getBusinessRuleType().getCode() + "_" + businessRule.getId() + "_TRG")){
+                    return this.dropTrigger(triggerName);
+                }
              }
              rs.close();
         } catch (SQLException ex) {
@@ -164,18 +169,20 @@ public class OracleDialect extends DatabaseDialect {
     public boolean dropTrigger(String triggerName){
         try {
             Statement stmt = connection.createStatement();
-            ResultSet rs = stmt.executeQuery(
-                    "DROP TRIGGER " + triggerName + ";"
+            stmt.executeUpdate(
+                    "DROP TRIGGER " + triggerName + ""
             );
             stmt = connection.createStatement();
-            rs = stmt.executeQuery(
+            ResultSet rs = stmt.executeQuery(
                     "SELECT * FROM USER_TRIGGERS " +
-                    "WHERE TABLE_OWNER = '" + credentials.get("DATABASE_NAME") + "' AND" +
+                    "WHERE TABLE_OWNER = '" + credentials.get("DATABASE_NAME") + "' AND " +
                     "TRIGGER_NAME = '" + triggerName + "'"
             );
-            if(rs.first()){
-                System.out.println("trigger name still exists");
-                return false;
+            while(rs.next()){
+                if(rs.getString("TRIGGER_NAME").equals(triggerName)){
+                    System.out.println("trigger name still exists");
+                    return false;
+                }
             }
             
             return true;

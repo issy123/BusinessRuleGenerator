@@ -14,6 +14,7 @@ import template.Template;
 import template.TemplateReader;
 
 import java.util.HashMap;
+import util.DataTypeUtil;
 
 /**
  * @author ismail
@@ -37,8 +38,8 @@ public class AttributeRangeRule extends Template {
         hmap.put("{table_name}", rule.getTableName());
         hmap.put("{column_name}", rule.getColumnName());
         hmap.put("{range_type}", rangeRule.getRangeType());
-        hmap.put("{min}", rangeRule.getMin());
-        hmap.put("{max}", rangeRule.getMax());
+        hmap.put("{min}", DataTypeUtil.toText(rule.getColumnType(),rangeRule.getMin()));
+        hmap.put("{max}", DataTypeUtil.toText(rule.getColumnType(),rangeRule.getMax()));
 
         String parsedTemplate;
         for (HashMap.Entry<String, String> placeholder : hmap.entrySet()) {

@@ -15,6 +15,7 @@ import template.TemplateReader;
 
 import java.util.HashMap;
 import java.util.Map;
+import util.DataTypeUtil;
 
 /**
  * @author ismail
@@ -39,7 +40,7 @@ public class InterEntityCompareRule extends Template {
         hmap.put("{column_name}", rule.getColumnName());
         hmap.put("{id}", Long.toString(rule.getId()));
 
-        hmap.put("{column_type}", rule.getColumnType());
+        hmap.put("{column_type}", DataTypeUtil.toType(rule.getColumnType()));
         hmap.put("{column_name2}", compareRule.getColumnName2());
         hmap.put("{column_type2}", compareRule.getColumnType2());
         hmap.put("{comparison}", compareRule.getComparison());

@@ -5,9 +5,12 @@
  */
 package template.templates;
 
+import java.util.HashMap;
 import model.BusinessRuleModel;
+import model.OtherRuleModel;
 import org.hibernate.Session;
 import template.Template;
+import template.TemplateReader;
 
 /**
  * @author ismail
@@ -16,7 +19,29 @@ public class TupleOtherRule extends Template {
 
     @Override
     public String parseTemplate(BusinessRuleModel rule, Session session) {
-        return null;
+        OtherRuleModel otherRule;
+        otherRule = (OtherRuleModel) session.get(
+                OtherRuleModel.class,
+                rule.getId()
+        );
+        String template = TemplateReader.getInstance().readFile(
+                rule.getProject().getDatabaseType().toLowerCase() + "/TupleOtherRule.sql"
+            );
+        HashMap<String, String> hmap = new HashMap<>();
+        /*Adding elements to HashMap*/
+        hmap.put("{id}", String.valueOf(rule.getId()));
+        hmap.put("{error_message}", rule.getErrorMessage());
+        hmap.put("{table_name}", rule.getTableName());
+        hmap.put("{event}", otherRule.getBeforeOrAfter());
+        hmap.put("{action}", otherRule.getInsertUpdateDelete());
+        hmap.put("{sql_code}", otherRule.getSqlCode());
+
+        String parsedTemplate;
+        for (HashMap.Entry<String, String> placeholder : hmap.entrySet()) {
+            parsedTemplate = template.replace(placeholder.getKey(), placeholder.getValue());
+            template = parsedTemplate;
+        }
+        return template;
     }
 
     @Override

@@ -26,11 +26,9 @@ public class EntityOtherRule extends Template {
                 OtherRuleModel.class,
                 rule.getId()
         );
-        System.out.println("reading file");
         String template = TemplateReader.getInstance().readFile(
                 rule.getProject().getDatabaseType().toLowerCase() + "/EntityOtherRule.sql"
             );
-        System.out.println("readed file");
         HashMap<String, String> hmap = new HashMap<>();
         /*Adding elements to HashMap*/
         hmap.put("{id}", String.valueOf(rule.getId()));

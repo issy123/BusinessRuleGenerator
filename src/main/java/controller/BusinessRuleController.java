@@ -32,9 +32,6 @@ public class BusinessRuleController extends Controller {
 
     public static List<Map<String, String>> generateBusinessRules(Request req, Response res) {
         List<Map<String, String>> results = new ArrayList();
-        if(!testConnection(req.params(":project_id"))){
-            return results;
-        }
         String rules = req.params(":rules");
         logger.debug("Received rules:" + rules);
         List<String> seperatedRules = Arrays.asList(rules.split(","));
@@ -64,9 +61,6 @@ public class BusinessRuleController extends Controller {
     
     public static List<Map<String, String>> removeBusinessRule(Request req, Response res) {
         List<Map<String, String>> results = new ArrayList();
-        if(!testConnection(req.params(":project_id"))){
-            return results;
-        }
         String rules = req.params(":rules");
         logger.debug("Received rules:" + rules);
         List<String> seperatedRules = Arrays.asList(rules.split(","));

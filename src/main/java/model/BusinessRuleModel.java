@@ -115,7 +115,7 @@ public class BusinessRuleModel  implements java.io.Serializable {
 
     @Override
     public String toString() {
-        return "BusinessRuleModel{" + "id=" + id + ", businessRuleType=" + businessRuleType + ", project=" + project + ", name=" + name + ", errorMessage=" + errorMessage + ", tableName=" + tableName + ", columnName=" + columnName + ", columnType=" + columnType + ", createdOn=" + createdOn + ", active=" + active + '}';
+        return "BusinessRuleModel{" + "id=" + id + ", businessRuleType=" + businessRuleType.getCode() + ", project=" + project.getName() + ", name=" + name + ", errorMessage=" + errorMessage + ", tableName=" + tableName + ", columnName=" + columnName + ", columnType=" + columnType + ", createdOn=" + createdOn + ", active=" + active + '}';
     }
 
 

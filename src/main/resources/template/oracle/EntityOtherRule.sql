@@ -1,4 +1,4 @@
-CREATE OR REPLACE TRIGGER BRG_EOTH_{table_name}_{id}_TRG
+CREATE OR REPLACE TRIGGER BRG_EOTH_{id}_TRG
 {event} {action}
 ON {attribute_table}
 FOR EACH ROW

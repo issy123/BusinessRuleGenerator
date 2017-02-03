@@ -25,7 +25,6 @@ public class Config {
         businessRuleParser.register(new AttributeRangeRule());
         businessRuleParser.register(new EntityOtherRule());
         businessRuleParser.register(new InterEntityCompareRule());
-        businessRuleParser.register(new ModifyRule());
         businessRuleParser.register(new TupleCompareRule());
         businessRuleParser.register(new TupleOtherRule());
         logger.debug("Configuration complete");

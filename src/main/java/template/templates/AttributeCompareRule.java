@@ -14,6 +14,7 @@ import template.Template;
 import template.TemplateReader;
 
 import java.util.HashMap;
+import util.DataTypeUtil;
 
 /**
  * @author ismail
@@ -38,8 +39,9 @@ public class AttributeCompareRule extends Template {
         hmap.put("{table_name}", rule.getTableName());
         hmap.put("{column_name}", rule.getColumnName());
         hmap.put("{id}", Long.toString(rule.getId()));
-        hmap.put("{column_type}", rule.getColumnType());
+        hmap.put("{column_type}", DataTypeUtil.toType(rule.getColumnType()));
         hmap.put("{comparison}", compareRule.getComparison());
+        hmap.put("{value}", DataTypeUtil.toText(rule.getColumnType(), compareRule.getValue()));
 
         String parsedTemplate;
         for (HashMap.Entry<String, String> placeholder : hmap.entrySet()) {

@@ -28,11 +28,9 @@ public class AttributeListRule extends Template {
                 AttributeListRuleModel.class,
                 rule.getId()
         );
-        System.out.println("reading file");
         String template = TemplateReader.getInstance().readFile(
                 rule.getProject().getDatabaseType().toLowerCase() + "/AttributeOtherBeforeRule.sql"
             );
-        System.out.println("readed file");
         HashMap<String, String> hmap = new HashMap<>();
         /*Adding elements to HashMap*/
         hmap.put("{id}", String.valueOf(rule.getId()));
