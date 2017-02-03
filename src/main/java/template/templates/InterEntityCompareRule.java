@@ -28,15 +28,16 @@ public class InterEntityCompareRule extends Template {
     public String parseTemplate(BusinessRuleModel rule, Session session) {
         CompareRuleModel compareRule;
         compareRule = (CompareRuleModel) session.get(CompareRuleModel.class, rule.getId());
-        String filename = rule.getProject().getDatabaseType().toLowerCase() + "/TupleCompareRule.sql";
+        String filename = rule.getProject().getDatabaseType().toLowerCase() + "/InterEntityCompareRule.sql";
 
         logger.debug("reading file: " + filename);
         String template = TemplateReader.getInstance().readFile(filename);
 
         Map<String, String> hmap = new HashMap<>();
         /*Adding elements to HashMap*/
-        hmap.put("{error_message}", rule.getErrorMessage());
+        hmap.put("{error_message}", rule.getErrorMessage().replace("'", "''"));
         hmap.put("{table_name}", rule.getTableName());
+        hmap.put("{table_name2}", compareRule.getTableName2());
         hmap.put("{column_name}", rule.getColumnName());
         hmap.put("{id}", Long.toString(rule.getId()));
 

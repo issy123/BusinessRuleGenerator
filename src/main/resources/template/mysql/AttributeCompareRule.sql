@@ -1,11 +1,5 @@
-CREATE PROCEDURE country_hos
-(IN con CHAR(20))
-BEGIN
-  SELECT Name, HeadOfState FROM Country
-  WHERE Continent = con
-END
-create trigger BRG_ACMP_{table_name}_INSERT_TRG
-before insert on {table_name}
+create trigger BRG_ACMP_{id}_{upper_event}_TRG
+before {event} on {table_name}
 for each row
 begin
   if(new.agency < 1 or new.agency >5) then
@@ -13,8 +7,8 @@ begin
   end if 
 end
 
-create trigger BRG_ACMP_{table_name}_UPDATE_TRG
-before insert on {table_name}
+create trigger BRG_ACMP_{id}_{upper_event}_TRG
+before update on {table_name}
 for each row
 begin
     DECLARE ComparisonValue {column_type};

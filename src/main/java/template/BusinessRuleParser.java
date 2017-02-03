@@ -49,6 +49,7 @@ public class BusinessRuleParser {
         System.out.println(businessRuleId);
         for (Template template : templates) {
             if (template.code().equals(code)) {
+                System.out.println("CODE: " + code);
                 return template.parse(rule, openSession);
             }
         }

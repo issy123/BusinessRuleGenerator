@@ -103,7 +103,7 @@ public class MySqlDialect extends DatabaseDialect {
 
     @Override
     public List<String> getBusinessRules() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return new ArrayList();
     }
 
     @Override
@@ -129,6 +129,6 @@ public class MySqlDialect extends DatabaseDialect {
     
     @Override
     public boolean removeBusinessRule(BusinessRuleModel businessRule) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return false;
     }
 }

@@ -8,6 +8,6 @@ BEGIN
     {sql_code};
     IF NOT l_PASSED
     THEN
-    RAISE_APPLICATION_ERROR(-20000, {error});
+    RAISE_APPLICATION_ERROR(-20000, '{error_message}');
     END IF;
 END;

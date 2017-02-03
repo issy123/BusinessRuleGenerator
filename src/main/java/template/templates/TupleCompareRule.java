@@ -34,13 +34,12 @@ public class TupleCompareRule extends Template {
 
         HashMap<String, String> hmap = new HashMap<>();
         /*Adding elements to HashMap*/
-        hmap.put("{error_message}", rule.getErrorMessage());
+        hmap.put("{error_message}", rule.getErrorMessage().replace("'", "''"));
         hmap.put("{table_name}", rule.getTableName());
         hmap.put("{column_name}", rule.getColumnName());
         hmap.put("{id}", Long.toString(rule.getId()));
         hmap.put("{column_type}", rule.getColumnType());
         hmap.put("{column_name2}", compareRule.getColumnName2());
-        hmap.put("{column_type2}", compareRule.getColumnType2());
         hmap.put("{comparison}", compareRule.getComparison());
 
         String parsedTemplate;

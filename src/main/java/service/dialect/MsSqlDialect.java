@@ -96,12 +96,12 @@ public class MsSqlDialect extends DatabaseDialect {
 
     @Override
     public boolean insertBusinessRule(String businessRule) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return false;
     }
 
     @Override
     public List<String> getBusinessRules() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return new ArrayList();
     }
 
     @Override

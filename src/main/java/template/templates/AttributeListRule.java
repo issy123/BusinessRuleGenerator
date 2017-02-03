@@ -34,7 +34,7 @@ public class AttributeListRule extends Template {
         HashMap<String, String> hmap = new HashMap<>();
         /*Adding elements to HashMap*/
         hmap.put("{id}", String.valueOf(rule.getId()));
-        hmap.put("{error_message}", rule.getErrorMessage());
+        hmap.put("{error_message}", rule.getErrorMessage().replace("'", "''"));
         hmap.put("{list_type}", listRule.getListType());
         Set listRuleItems = listRule.getAttributeListRuleItems();
         String listItems = "";

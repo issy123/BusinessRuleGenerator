@@ -34,7 +34,7 @@ public class AttributeRangeRule extends Template {
         HashMap<String, String> hmap = new HashMap<>();
         /*Adding elements to HashMap*/
         hmap.put("{id}", String.valueOf(rule.getId()));
-        hmap.put("{error_message}", rule.getErrorMessage());
+        hmap.put("{error_message}", rule.getErrorMessage().replace("'", "''"));
         hmap.put("{table_name}", rule.getTableName());
         hmap.put("{column_name}", rule.getColumnName());
         hmap.put("{range_type}", rangeRule.getRangeType());
